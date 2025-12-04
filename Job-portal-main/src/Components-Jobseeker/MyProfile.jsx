@@ -13,6 +13,7 @@ import editIcon from '../assets/EditIcon.png'
 import uploadIcon from '../assets/UploadIcon.png'
 import deleteIcon from '../assets/DeleteIcon.png'
 import { AvatarMenu } from './AvatarMenu';
+import { JHeader } from './JHeader';
 
 // --- REUSABLE COMPONENTS ---
 
@@ -733,7 +734,7 @@ export const MyProfile = () => {
 
     return (
         <div>
-            <header className="header">
+            {/* <header className="header">
                 <div className="logo">job portal</div>
                 <nav className="nav-links">
                     <Link to="/Job-portal/jobseeker/" className="nav-item">Home</Link>
@@ -747,7 +748,8 @@ export const MyProfile = () => {
                     <AvatarMenu />
                 </div>
                 <JNotification notificationsData={notificationsData} showNotification={showNotification} setShowNotification={setShowNotification} />
-            </header>
+            </header> */}
+            <JHeader/>
             <main>
                 <div className='profile-main-desc'>
                     <h1>My Profile</h1>

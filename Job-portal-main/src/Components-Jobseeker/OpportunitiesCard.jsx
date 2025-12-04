@@ -28,7 +28,7 @@ export const OpportunitiesCard = (props) => {
     const logoContent = job.logo ? (<img src={job.logo} alt={job.company} className="Opportunities-job-logo" />) : (<div className="Opportunities-job-logo-placeholder">{job.company.charAt(0).toUpperCase()}</div>)
     const navigate = useNavigate()
     const HandleClick = () => {
-        navigate(`/Job-portal/jobseeker/OpportunityOverview/${job.id}`)
+        navigate(`/Job-portal-Live/jobseeker/OpportunityOverview/${job.id}`)
     }
     return (
         <div onClick={() => HandleClick()} className="Opportunities-job-card">

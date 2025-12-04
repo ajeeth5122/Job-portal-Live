@@ -15,6 +15,7 @@ import { Joblist } from "../JobList";
 import { OpportunitiesCard } from './OpportunitiesCard';
 import { notificationsData } from './Afterloginlanding'; 
 import { AvatarMenu } from './AvatarMenu';
+import { JHeader } from './JHeader';
 
 export const JobsTab = () => {
     const [showNotification, setShowNotification] = useState(false);
@@ -91,7 +92,7 @@ export const JobsTab = () => {
 
     return (
         <>
-            <header className="header">
+            {/* <header className="header">
                 <div className="logo">job portal</div>
                 <nav className="nav-links">
                     <Link to="/Job-portal/jobseeker/" className="nav-item" >Home</Link>
@@ -106,7 +107,8 @@ export const JobsTab = () => {
                     <AvatarMenu />
                 </div>
                 <JNotification notificationsData={notificationsData || []} showNotification={showNotification} setShowNotification={setShowNotification} />
-            </header>
+            </header> */}
+            <JHeader/>
 
             <div className='jobs-tab-search-bar'>
                 <div className="search-bar">

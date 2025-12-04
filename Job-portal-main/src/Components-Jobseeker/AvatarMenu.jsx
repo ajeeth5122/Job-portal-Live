@@ -33,7 +33,7 @@ export const AvatarMenu = () => {
 
       {open && (
         <div className="avatar-menu">
-          <Link to="/Job-portal/jobseeker/myprofile" className="menu-item">
+          <Link to="/Job-portal-Live/jobseeker/myprofile" className="menu-item">
             <img src={profileIcon} className="menu-icon" alt="profile" />
             Profile
           </Link>

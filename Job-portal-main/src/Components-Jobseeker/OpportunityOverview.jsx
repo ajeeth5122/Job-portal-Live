@@ -36,7 +36,7 @@ export const OpportunityOverview = () => {
 
   return (
     <>
-      <header className="header">
+      {/* <header className="header">
         <div className="logo">job portal</div>
         <nav className="nav-links">
           <Link to="/Job-portal-Live/jobseeker/" className="nav-item" >Home</Link>
@@ -50,7 +50,8 @@ export const OpportunityOverview = () => {
           <div><img className='header-icons' src={bell} alt='Notifications' /></div>
           <AvatarMenu />
         </div>
-      </header>
+      </header> */}
+      <JHeader/>
 
       <div className='opp-overview-content'>
         <div className='search-backbtn-container'>

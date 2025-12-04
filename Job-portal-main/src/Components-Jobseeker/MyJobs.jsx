@@ -12,6 +12,7 @@ import { AppliedJobCard } from './AppliedJobCard';
 import { notificationsData } from './Afterloginlanding';
 import { JNotification } from './JNotification';
 import { AvatarMenu } from './AvatarMenu';
+import { JHeader } from './JHeader';
 
 /* Below Code is removed after backend integration*/
 const savedJobsList = [
@@ -160,7 +161,7 @@ export const MyJobs = () => {
 
     return (
         <>
-            <header className="header">
+            {/* <header className="header">
                 <div className="logo">job portal</div>
                 <nav className="nav-links">
                     <Link to="/Job-portal-Live/jobseeker/" className="nav-item" >Home</Link>
@@ -175,8 +176,8 @@ export const MyJobs = () => {
                     <AvatarMenu />
                 </div>
                 <JNotification notificationsData={notificationsData} showNotification={showNotification} setShowNotification={setShowNotification} />
-            </header>
-
+            </header> */}
+            <JHeader/>
             <main>
                 <div className='myjobs-main-info'>
                     <h1>"My Jobs"</h1>

@@ -55,12 +55,12 @@ export const Jobsbycompany = () => {
                             <p className='carousel-company-rating'><span className="star"><img src={starIcon} /></span> {company.ratings} | {company.reviewNo} reviews</p>
                         </div>
                         <p className="carousel-desc">{company.slogan}</p>
-                        <button onClick={()=>navigate(`/Job-portal/jobseeker/companies/${company.companyId}`)} className="carousel-view-jobs">View jobs</button>
+                        <button onClick={()=>navigate(`/Job-portal-Live/jobseeker/companies/${company.companyId}`)} className="carousel-view-jobs">View jobs</button>
                     </div>
                 ))}
             </Slider>
             <div className="carousel-view-all-wrapper">
-                <button onClick={() => navigate('/Job-portal/jobseeker/companies')} className="carousel-view-all">View All Companies</button>
+                <button onClick={() => navigate('/Job-portal-Live/jobseeker/companies')} className="carousel-view-all">View All Companies</button>
             </div>
         </section>
     )

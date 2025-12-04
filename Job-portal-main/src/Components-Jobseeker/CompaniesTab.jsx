@@ -24,6 +24,7 @@ import { notificationsData } from './Afterloginlanding';
 import { JNotification } from './JNotification';
 import { CompaniesList } from '../CompaniesList';
 import { AvatarMenu } from './AvatarMenu';
+import { JHeader } from './JHeader';
 
 /* Below Code is removed after backend integration*/
 const companiesList = CompaniesList.slice(0,8)
@@ -51,7 +52,7 @@ export const CompaniesTab = () => {
         </div>
         <JNotification notificationsData={notificationsData} showNotification={showNotification} setShowNotification={setShowNotification} />
       </header> */}
-
+      <JHeader/>
       <div className='jobs-tab-search-bar'>
         <div className="search-bar">
           <div className="search-field">
