@@ -1,18 +1,11 @@
 import React, { useState, useRef } from 'react'
 import './MyProfile.css'
-import { Link } from 'react-router-dom';
-import breifcase from '../assets/header_case.png'
-import chat from '../assets/header_message.png'
-import bell from '../assets/header_bell.png'
-import bell_dot from '../assets/header_bell_dot.png'
 import profile from '../assets/header_profile.png'
 import addPhoto from '../assets/AddPhoto.png'
 import { notificationsData } from './Afterloginlanding';
-import { JNotification } from './JNotification';
 import editIcon from '../assets/EditIcon.png'
 import uploadIcon from '../assets/UploadIcon.png'
 import deleteIcon from '../assets/DeleteIcon.png'
-import { AvatarMenu } from './AvatarMenu';
 import { JHeader } from './JHeader';
 
 // --- REUSABLE COMPONENTS ---
@@ -55,7 +48,7 @@ const PopupModal = ({ title, isOpen, onClose, onSave, onDelete, mode, children }
 
 const Profile = ({ data, onChange, onReset, onNext }) => {
     const [errors, setErrors] = useState({});
-    const AlphaOnlyreg = /^[A-Za-z]+$/
+    const AlphaOnlyreg = /^[A-Za-z]+(?: [A-Za-z]+)*$/;
     const today = new Date().toISOString().split('T')[0];
     const handleChange = (e) => {
         onChange(e);
@@ -68,7 +61,7 @@ const Profile = ({ data, onChange, onReset, onNext }) => {
         
         
         if (!data.fullName?.trim()) newErrors.fullName = "*Full Name is required";
-        else if (!AlphaOnlyreg.test(data.fullName)) newErrors.fullName = "* Please use letters only; no spaces or numbers allowed";
+        else if (!AlphaOnlyreg.test(data.fullName)) newErrors.fullName = "*Please use letters only; no spaces or numbers allowed";
         if (data.gender === "Select") newErrors.gender = "*Please select a gender";
         if (!data.dob) newErrors.dob = "*Date of Birth is required";
         else if (data.dob > today) newErrors.dob = "*Date cannot be in the future";
@@ -196,6 +189,7 @@ const ContactDetails = ({ data, onChange, onReset, onNext }) => {
     const [errors, setErrors] = useState({});
     const handleChange = (e) => { onChange(e); if(errors[e.target.name]) setErrors({...errors, [e.target.name]: ''}); };
     const mobileRegex = /^\d{10}$/;
+    const Pincode = /^[1-9][0-9]{5}$/
     const handleSubmit = (e) => {
         e.preventDefault();
         const newErrors = {};
@@ -210,7 +204,10 @@ const ContactDetails = ({ data, onChange, onReset, onNext }) => {
         if (!data.address) newErrors.address = "Required";
         if (!data.country) newErrors.country = "Required";
         if (!data.state) newErrors.state = "Required";
+        if (!data.street) newErrors.street = "Required";
         if (!data.pincode) newErrors.pincode = "Required";
+        if (!data.city) newErrors.city = "Required";
+            else if(!Pincode.test(data.pincode)) newErrors.pincode = "Enter a Valid PinCode";
         
         setErrors(newErrors);
         if (Object.keys(newErrors).length === 0) {
@@ -276,18 +273,9 @@ const EducationDetails = ({ data, onUpdateSSLC, onUpdateHSC, onUpdateGrad, onAdd
     const toggleSection = (id) => setOpenSection(openSection === id ? null : id);
     const today = new Date().toISOString().split('T')[0];
     const percentageReg = /^(\d{1,2}(\.\d{1,2})?|100(\.0{1,2})?)%?$/
- 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     if(!data.sslc.institution || !data.sslc.percentage) {
-    //         alert("Please fill at least the SSLC details.");
-    //         return;
-    //     }
-    //     onNext();
-    // };
+
  
     const [errors, setErrors] = useState({});
-    // const handleChange = (e) => { onChange(e); if(errors[e.target.name]) setErrors({...errors, [e.target.name]: ''}); };
    
  
      const handleSubmit = (e) => {
@@ -438,7 +426,7 @@ const WorkExperience = ({ data, onChange, onUpdateEntry, onAddEntry, onRemoveEnt
     const handleSubmit = (e) => {
         e.preventDefault();
         if (data.status === 'Experienced') {
-            // Check if at least one entry has a Job Title and Company
+           
             const isValid = data.entries.every(entry => entry.title && entry.company);
             if (!isValid) {
                 alert("Please fill in Job Title and Company for all entries.");
@@ -632,17 +620,43 @@ const Certifications = ({ certs, onAdd, onUpdate, onDelete, onReset, onNext }) =
 };
 
 // --- FINAL SUBMIT BUTTON SECTION ---
-const Preferences = ({ data, onChange, onReset, onSubmitFinal }) => (
-    <form className="content-card" onSubmit={(e) => { e.preventDefault(); onSubmitFinal(); }}>
+const Preferences = ({ data, onChange, onReset,onSubmitFinal }) => {
+    const [errors, setErrors] = useState({});
+    const handleSubmit = (e) => {
+       
+        const newErrors = {};
+        if (!data.currentCTC) newErrors.currentCTC = "Required";
+        if (!data.expectedCTC) newErrors.expectedCTC = "Required";
+        if (!data.jobType || data.jobType === 'Select') {
+            newErrors.jobType = "Please select a job type";}
+        if (!data.role) newErrors.role = "Required";
+        if (!data.ready) newErrors.ready = "Please select your availability";
+        if (!data.relocate) newErrors.relocate = "Please select relocation preference";
+   
+       
+        setErrors(newErrors);
+        if (Object.keys(newErrors).length === 0) {
+         onSubmitFinal()
+        } else {
+            
+        }
+    };
+    
+    return (
+    <form className="content-card" onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
         <div className="profile-header">
             <h2>Preferences / Career Details</h2>
             <button type="button" className="reset-link" onClick={onReset}>Reset</button>
         </div>
         <div className="form-grid">
-            <div className="form-group"><label>Current CTC</label><input type="text" name="currentCTC" value={data.currentCTC || ''} onChange={onChange} placeholder='Enter your Current CTC'/></div>
-            <div className="form-group"><label>Expected CTC</label><input type="text" name="expectedCTC" value={data.expectedCTC || ''} onChange={onChange} placeholder='Enter your Expected CTC'/></div>
-            <div className="form-group"><label>Preferred Job Type</label><select name="jobType" value={data.jobType || 'Select'} onChange={onChange}><option value="Select">Select</option><option value="Full-time">Full-time</option><option value="Part-time">Part-time</option><option value="Internship">Internship</option><option value="Contract">Contract</option></select></div>
-            <div className="form-group"><label>Preferred Industry/Role</label><input type="text" name="role" value={data.role || ''} onChange={onChange} placeholder='Enter preferred industry/role'/></div>
+            <div className="form-group"><label>Current CTC</label><input type="text" name="currentCTC" value={data.currentCTC} onChange={onChange} placeholder='Enter your Current CTC'/>
+            {errors.currentCTC && <span className="error-msg">{errors.currentCTC}</span>}</div>
+            <div className="form-group"><label>Expected CTC</label><input type="text" name="expectedCTC" value={data.expectedCTC} onChange={onChange} placeholder='Enter your Expected CTC'/>
+            {errors.currentCTC && <span className="error-msg">{errors.currentCTC}</span>}</div>  
+            <div className="form-group"><label>Preferred Job Type</label><select name="jobType" value={data.jobType} onChange={onChange}><option value="Select">Select</option><option value="Full-time">Full-time</option><option value="Part-time">Part-time</option><option value="Internship">Internship</option><option value="Contract">Contract</option></select>
+            {errors.jobType && <span className="error-msg">{errors.jobType}</span>}</div>  
+            <div className="form-group"><label>Preferred Industry/Role</label><input type="text" name="role" value={data.role || ''} onChange={onChange} placeholder='Enter preferred industry/role'/>
+            {errors.role && <span className="error-msg">{errors.role}</span>}</div>
         </div>
         
         <div style={{ display: 'flex', flexDirection: "column" , gap: '2rem', marginTop: '2rem' }}>
@@ -650,16 +664,19 @@ const Preferences = ({ data, onChange, onReset, onSubmitFinal }) => (
                 <div>
                     <label style={{ display: 'block', marginBottom: '0.8rem', fontWeight: '500', fontSize: '0.9rem' }}>Ready to work</label>
                     <small>Inform employers that you’re available to begin immediately.</small>
+                     {errors.ready && <span className="error-msg">{errors.ready}</span>}
                 </div>
                 <div style={{ display: 'flex', alignItems: "center" , gap: '1.5rem' }}>
                     <label style={{display:'flex', gap:'5px', cursor:'pointer'}}><input type="radio" name="ready" value="Yes" checked={data.ready === "Yes"} onChange={onChange} /> Yes</label>
                     <label style={{display:'flex', gap:'5px', cursor:'pointer'}}><input type="radio" name="ready" value="No" checked={data.ready === "No"} onChange={onChange} /> No</label>
+                    
                 </div>
             </div>
             <div style={{ display: 'flex' , gap: '12rem' }}>
                 <div>
                     <label style={{ display: 'block', marginBottom: '0.8rem', fontWeight: '500', fontSize: '0.9rem' }}>Willing to Relocate</label>
                     <small>Inform employers that you’re available to begin immediately.</small>
+                    {errors.relocate && <span className="error-msg">{errors.relocate}</span>}
                 </div>
                 <div style={{ display: 'flex', alignItems: "center" , gap: '1.5rem' }}>
                     <label style={{display:'flex', gap:'5px', cursor:'pointer'}}><input type="radio" name="relocate" value="Yes" checked={data.relocate === "Yes"} onChange={onChange} /> Yes</label>
@@ -668,9 +685,9 @@ const Preferences = ({ data, onChange, onReset, onSubmitFinal }) => (
             </div>
         </div>
 
-        <div className="form-actions"><button type="submit" className="btn btn-primary">Save & Continue</button></div>
+        <div className="form-actions"><button type="submit"  className="btn btn-primary">Save & Continue</button></div>
     </form>
-);
+)};
 
 // --- MAIN COMPONENT ---
 
@@ -704,7 +721,7 @@ export const MyProfile = () => {
         skills: ["User Research", "Problem solving", "Figma"],
         languages: [{ name: "English", proficiency: "Fluent" }, { name: "Tamil", proficiency: "Native" }],
         certs: [{ name: "Full-Stack Development", file: "cert1.pdf" }, { name: "UI/UX Design", file: "cert2.pdf" }],
-        preferences: { currentCTC: '', expectedCTC: '', jobType: 'Select', role: '', ready: '', relocate: '' }
+        preferences: [{ currentCTC: '', expectedCTC: '', jobType: 'Select', role: '', ready: '', relocate: '' }]
     });
 
     // --- NAVIGATION LOGIC ---
@@ -720,10 +737,116 @@ export const MyProfile = () => {
         }
     };
 
-    const handleFinalSubmit = () => {
-        console.log("FINAL FORM SUBMISSION:", allData);
-        alert("Profile Saved Successfully!");
-    };
+   const handleFinalSubmit = () => {
+    const today = new Date().toISOString().split('T')[0];
+    const AlphaOnlyreg =  /^[A-Za-z]+(?: [A-Za-z]+)*$/;
+    const percentageReg = /^(\d{1,2}(\.\d{1,2})?|100(\.0{1,2})?)%?$/;
+
+    // --- 1. Current Details VALIDATION ---
+    const CurrentDetails = allData.currentDetails;
+    const isCurrentdetailsValid = 
+        CurrentDetails.company.trim() &&
+        CurrentDetails.currentLocation.trim() &&
+        CurrentDetails.experience &&
+        CurrentDetails.jobTitle.trim() &&
+        CurrentDetails.prefLocation.trim()
+        
+
+    if (!isCurrentdetailsValid) {
+        alert("*fill the Required field in the Current Details section.");
+        return;
+    }
+
+     const Contactdetails = allData.contact;
+    const isContactdetailsValid = 
+        Contactdetails.email.trim() &&
+        Contactdetails.mobile &&
+        Contactdetails.altMobile &&
+        Contactdetails.email &&
+        Contactdetails.altEmail &&
+        Contactdetails.city.trim() &&
+        Contactdetails.country.trim() &&
+        Contactdetails.state.trim() &&
+        Contactdetails.street.trim() &&
+        Contactdetails.pincode
+        
+
+    if (!isContactdetailsValid) {
+        alert("*fill the Required field in the Contact Details section");
+        return;
+    }
+
+    // --- 2. PROFILE VALIDATION ---
+
+    const isProfileValid = 
+        profile.fullName?.trim() && 
+        AlphaOnlyreg.test(profile.fullName) &&
+        profile.gender !== "Select" &&
+        profile.dob && 
+        profile.dob <= today &&
+        profile.maritalStatus !== "Select" &&
+        profile.nationality?.trim();
+
+    if (!isProfileValid) {
+        alert("*fill the Required field in the Profile section.");
+        return;
+    }
+
+    // --- 2. EDUCATION VALIDATION ---
+    const edu = allData.education;
+    const isSslcValid = 
+        edu.sslc.institution && 
+        edu.sslc.location && 
+        edu.sslc.year && 
+        edu.sslc.year <= today &&
+        percentageReg.test(edu.sslc.percentage);
+
+    const isHscValid = 
+        edu.hsc.stream !== 'Select' &&
+        edu.hsc.institution &&
+        edu.hsc.year &&
+        edu.hsc.year <= today &&
+        percentageReg.test(edu.hsc.percentage);
+
+    if (!isSslcValid || !isHscValid) {
+        alert( "*required SSLC and HSC details with valid percentages and years.");
+        return;
+    }
+
+    // --- 3. WORK EXPERIENCE VALIDATION ---
+    const work = allData.experience;
+    let isWorkValid = true;
+    if (work.status === 'Experienced') {
+        // Check if all entries have the core required fields
+        isWorkValid = work.entries.every(entry => 
+            entry.title?.trim() !== "" && entry.company?.trim() !== ""
+        );
+    }
+
+    if (!isWorkValid) {
+        alert("*Work experience details Required.");
+        return;
+    }
+ 
+    const Preferences = allData.preferences;
+    let IsPreferencesValid = true;
+    if (Preferences.currentCTC === '') {
+        IsPreferencesValid = Preferences.entries.every(pref => 
+            pref.currentCTC?.trim() !=="" &&  pref.expectedCTC?.trim() !== ""
+        );
+    }
+
+    if (!isWorkValid) {
+        alert("*Work experience details Required.");
+        return;
+    }
+    // --- FINAL EXECUTION ---
+    if (isProfileValid && isSslcValid && isHscValid && isWorkValid && IsPreferencesValid) {
+        console.log("FINAL SUBMISSION DATA:", allData);
+        // Place your API call here (e.g., axios.post('/api/profile', allData))
+        alert("Your profile has been saved successfully!");
+    }
+};
 
     const handleUpdate = (section, e) => {
         const { name, value } = e.target;
