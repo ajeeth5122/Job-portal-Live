@@ -25,7 +25,7 @@ function SearchResultsCard(props) {
             <div onClick={HandleClick} className="SearchResults-job-card-header">
                 <div>
                     <h3 className="SearchResults-job-card-title">{job.title}</h3>
-                    <p className="SearchResults-job-card-company">{job.company}</p>
+                    <p className="SearchResults-job-card-company">{job.ratings}</p>
                 </div>
                 {logoContent}
             </div>
