@@ -95,3 +95,144 @@
     display: flex;
     margin-top: 15px;
 }
+.SortbySearch {
+  display: flex;
+  /* grid-template-columns: 1fr 1fr; */
+  justify-content: space-between;
+  align-items: center;
+/* border: 1px solid black; */
+  margin-bottom: 10px;
+  padding: 20px;
+}
+ 
+.sort-wrapper {
+  position: relative;
+}
+.NoofJobsCont{
+    margin-left: 70px;
+}
+ 
+.Sortbutton {
+  padding: 6px 40px 2px 14px;
+  border-radius: 20px;
+  border: 1px solid #d0d5dd;
+  background-color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+ 
+.Sortbutton:hover {
+  background-color: #f5f7fa;
+}
+ 
+.sort-dropdown {
+  position: absolute;
+  top: 42px;
+  right: 0;
+  width: 250px;
+  background-color: #ffffff;
+  border: 1px solid #e4e7ec;
+  border-radius: 10px;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  overflow: hidden;
+}
+ 
+.sort-dropdown div {
+  padding: 10px 85px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #0b0b0b;
+  border-bottom: 1px solid #e3e1e1;
+}
+.sort-dropdown div:last-child {
+  border-bottom: none;
+}
+.sort-dropdown div:hover {
+  background-color: #f5f7fa;
+}
+/* The main container needs a relative position and height */
+.range-container {
+  position: relative;
+  width: 100%;
+  height: 6px; /* Match height of tracks */
+  margin: 30px 0;
+  display: flex;
+  align-items: center;
+}
+
+/* 1. The Grey Background Track */
+.slider-base-track {
+  position: absolute;
+  width: 100%;
+  height: 6px;
+  background-color: #e2e8f0; /* Light grey */
+  border-radius: 10px;
+  z-index: 1;
+}
+
+/* 2. The Blue Filling Track */
+.slider-active-range {
+  position: absolute;
+  height: 6px;
+  background-color: #3b82f6; /* Bright blue */
+  border-radius: 10px;
+  z-index: 2; /* Sits above base track */
+}
+
+/* 3. Make the actual inputs invisible but keep the thumbs */
+.slider.multi {
+  position: absolute;
+  width: 100%;
+  pointer-events: none; /* Allows clicks to pass through to the blue bar */
+  appearance: none;
+  background: none;
+  z-index: 3; /* Sits on top of everything */
+  margin: 0;
+  outline: none;
+}
+
+/* 4. Styling the Handle (Thumb) */
+.slider.multi::-webkit-slider-thumb {
+  appearance: none;
+  pointer-events: auto; /* Re-enable clicking for the handle itself */
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #3b82f6;
+  border: 2px solid #fff;
+  cursor: pointer;
+}
+
+/* Firefox Support */
+.slider.multi::-moz-range-thumb {
+  pointer-events: auto;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #3b82f6;
+  border: 2px solid #fff;
+  cursor: pointer;
+}
+.salary-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-weight: 600;
+  color: #475569;
+  font-size: 0.9rem;
+}
+.Single-slider{
+  width: 100%;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 480px) {
+  .filter-group {
+    max-width: 100%; /* Spans full width on phones */
+  }
+}
