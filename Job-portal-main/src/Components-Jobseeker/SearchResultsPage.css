@@ -1,27 +1,18 @@
 .search-result-title{
     text-align: center;
-    margin: 80px 0 ;
-    
-   
+    margin: 15px 0;
 }
 .Mainsec-Search-Res{
     display: grid; 
     grid-template-columns: 30% 50%;
-    margin: 20px;
-    padding: 30px;
-    /* border-top: 0.2px solid #999; */
-    /* background-color: rebeccapurple; */
-   
+    margin: 20px auto;
+    padding: 20px;
+    gap: 6.5rem;
 }
 .Aside{
-    /* position: sticky;
-    top: 10px; */
-    /* background-color: bisque; */
     padding: 20px;
-    /* margin-top: 30px; */
     height: max-content;
     overflow-y: scroll;   
-    /* background-color: bisque;  */
     margin-left: 50px;  
 }
 .Aside::-webkit-scrollbar{
@@ -29,27 +20,18 @@
 }
 
 .filter-applied{
-    color: steelblue;
-    font-weight: 600;
-    font-family: inter;
+    color: #3b82f6;
+    font-weight: 700;
     cursor: pointer;
 }
 .maincontent{
-    /* background-color: aquamarine; */
     display: flex;
     flex-direction: column;
-    /* justify-content: space-evenly; */
-    /* justify-items: center; */
-    /* align-items: center; */
     width: fit-content;
     margin-left: 30px;
-    /* padding: 50px; */
-    /* background-color: yellowgreen; */
-    
 }
 .jobs-card{
     margin: 10px 20px;
-    /* border: 1px solid green; */
     padding: 0px 50px;
 }
 .aside-header{
@@ -88,7 +70,7 @@
     border: none;
     outline: none;
     background: none;
-    color: steelblue;
+    color: #3b82f6;
     cursor: pointer;
 }
 .viewmore-cont{
@@ -97,10 +79,8 @@
 }
 .SortbySearch {
   display: flex;
-  /* grid-template-columns: 1fr 1fr; */
   justify-content: space-between;
   align-items: center;
-/* border: 1px solid black; */
   margin-bottom: 10px;
   padding: 20px;
 }
@@ -113,7 +93,7 @@
 }
  
 .Sortbutton {
-  padding: 6px 40px 2px 14px;
+  padding: 6px 6px 5px 15px;
   border-radius: 20px;
   border: 1px solid #d0d5dd;
   background-color: #ffffff;
@@ -121,7 +101,7 @@
   font-weight: bold;
   cursor: pointer;
   display: flex;
-  align-items: center;
+  justify-content: center;
   gap: 6px;
 }
  
@@ -155,84 +135,110 @@
 .sort-dropdown div:hover {
   background-color: #f5f7fa;
 }
-/* The main container needs a relative position and height */
+
 .range-container {
-  position: relative;
-  width: 100%;
-  height: 6px; /* Match height of tracks */
-  margin: 30px 0;
-  display: flex;
-  align-items: center;
+    position: relative;
+    width: 100%;
+    height: 6px; 
+    margin: 30px 0 15px 0;
+    display: flex;
+    align-items: center;
 }
 
-/* 1. The Grey Background Track */
+.Single-slider,
+.slider {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    width: 100%;
+    height: 6px !important; 
+    background: transparent;
+    outline: none;
+    border-radius: 10px;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+.Single-slider {
+    position: absolute;
+    z-index: 2;
+}
+
 .slider-base-track {
-  position: absolute;
-  width: 100%;
-  height: 6px;
-  background-color: #e2e8f0; /* Light grey */
-  border-radius: 10px;
-  z-index: 1;
+    position: absolute;
+    width: 100%;
+    height: 6px;
+    background-color: #e2e8f0;
+    border-radius: 10px;
+    z-index: 1;
 }
 
-/* 2. The Blue Filling Track */
 .slider-active-range {
-  position: absolute;
-  height: 6px;
-  background-color: #3b82f6; /* Bright blue */
-  border-radius: 10px;
-  z-index: 2; /* Sits above base track */
+    position: absolute;
+    height: 6px;
+    background-color: #3b82f6;
+    border-radius: 10px;
+    z-index: 2;
 }
 
-/* 3. Make the actual inputs invisible but keep the thumbs */
 .slider.multi {
-  position: absolute;
-  width: 100%;
-  pointer-events: none; /* Allows clicks to pass through to the blue bar */
-  appearance: none;
-  background: none;
-  z-index: 3; /* Sits on top of everything */
-  margin: 0;
-  outline: none;
+    position: absolute;
+    pointer-events: none; 
+    z-index: 3;
 }
 
-/* 4. Styling the Handle (Thumb) */
-.slider.multi::-webkit-slider-thumb {
-  appearance: none;
-  pointer-events: auto; /* Re-enable clicking for the handle itself */
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background-color: #3b82f6;
-  border: 2px solid #fff;
-  cursor: pointer;
+.Single-slider::-webkit-slider-thumb,
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none !important; 
+    appearance: none !important;
+    pointer-events: auto; 
+    /* Ball Dimensions */
+    width: 18px !important;
+    height: 18px !important;
+    border-radius: 50%;
+    background-color: #3b82f6;
+    border: 2px solid #fff;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+    margin-top: -1px !important; 
 }
 
-/* Firefox Support */
-.slider.multi::-moz-range-thumb {
-  pointer-events: auto;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background-color: #3b82f6;
-  border: 2px solid #fff;
-  cursor: pointer;
+/* Firefox */
+.Single-slider::-moz-range-thumb,
+.slider::-moz-range-thumb {
+    pointer-events: auto;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background-color: #3b82f6;
+    border: 2px solid #fff;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+    margin-top: 0 !important;
+    border: none;
 }
+
 .salary-labels {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-  font-weight: 600;
-  color: #475569;
-  font-size: 0.9rem;
-}
-.Single-slider{
-  width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    font-weight: 600;
+    color: #3b82f6;
+    font-size: 0.9rem;
 }
 
-/* Mobile Adjustments */
+.section-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.filter-group {
+    width: 80%;
+    margin-left: 12%;
+}
+
 @media (max-width: 480px) {
   .filter-group {
-    max-width: 100%; /* Spans full width on phones */
+    max-width: 100%; 
   }
 }

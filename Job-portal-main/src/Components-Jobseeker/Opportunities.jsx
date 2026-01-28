@@ -10,17 +10,22 @@ import Infy from '../assets/INFY_BIG.png'
 import Tcs from '../assets/TCS.png'
 import META from '../assets/META_BIG.png'
 import { useNavigate } from "react-router-dom";
-import { Joblist } from '../JobList';
+import { useJobs } from './Jobcontext';
+// import { Joblist } from '../JobList';
+
+
 
 
 export const Opportunities = () => {
+   const { jobs } = useJobs();
   const navigate = useNavigate();
   const [displayCount, setDisplayCount] = useState(8);
-  const itemsToDisplay = Joblist.slice(0, displayCount);
+  const itemsToDisplay = jobs.slice(0, displayCount);
   return (
       <div className="Opportunities-job-list">
         {itemsToDisplay.map((job, index) => (
-          <OpportunitiesCard key={index} job={job} />
+          <OpportunitiesCard key={index} job={job} onButtonClick={() => navigate(`/Job-portal-Live/jobseeker/OpportunityOverview/${job.id}`)} 
+   buttonText="View Details" />
         ))}
       </div>
   )

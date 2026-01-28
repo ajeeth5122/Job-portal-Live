@@ -5,8 +5,12 @@ import experience from '../assets/opportunity_bag.png'
 import place from '../assets/opportunity_location.png'
 import calender from '../assets/calender_card.png'
 import './AppliedJobCard.css'
+import { useNavigate } from 'react-router-dom'
+
 
 export const AppliedJobCard = ({ opp }) => {
+  console.log(opp)
+  const navigate = useNavigate();
   return (
     <div className="myjobs-job-card">
       <div className="myjobs-card-header">
@@ -20,8 +24,8 @@ export const AppliedJobCard = ({ opp }) => {
       </div>
 
       <div className="Opportunities-job-details">
-        <p className='Opportunities-detail-line'><img src={time} className='card-icons' />{opp.type}<span className="Opportunities-divider">|</span>{opp.salary}</p>
-        <p className='Opportunities-detail-line'><img src={experience} className='card-icons' />{opp.experience}</p>
+        <p className='Opportunities-detail-line'><img src={time} className='card-icons' />{opp.duration}<span className="Opportunities-divider">|</span>{opp.salary}</p>
+        <p className='Opportunities-detail-line'><img src={experience} className='card-icons' />{opp.experience} years of experience</p>
         <p className='Opportunities-detail-line'><img src={place} className='card-icons' />{opp.location}</p>
         <p className='Opportunities-detail-line'><img src={calender} className='card-icons' />{opp.posted}<span className="Opportunities-divider">|</span>Openings: {opp.openings}<span className="Opportunities-divider">|</span>Applicants: {opp.applicants}</p>
       </div>
@@ -44,8 +48,9 @@ export const AppliedJobCard = ({ opp }) => {
         </div>
 
         <div className="Opportunities-job-actions">
-          <button className="applied-dis-btn" disabled>Applied</button>
+          
         </div>
+        <button className="Opportunities-apply-btn" onClick={()=>navigate(`/Job-portal-Live/jobseeker/AppliedJobsOverview/${opp.id}`)} >View Status</button>
       </div>
     </div>
   );

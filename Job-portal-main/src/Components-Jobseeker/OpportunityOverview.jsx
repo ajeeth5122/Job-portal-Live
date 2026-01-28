@@ -1,16 +1,8 @@
-import React from 'react'
-import { JHeader } from './JHeader';
+import React, { useState } from 'react'
 import { Footer } from '../Components-LandingPage/Footer';
 import { Link, useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import './OpportunityOverview.css'
-import breifcase from '../assets/header_case.png'
-import chat from '../assets/header_message.png'
-import bell from '../assets/header_bell.png'
-import profile from '../assets/header_profile.png'
-import search from '../assets/icon_search.png'
-import location from '../assets/icon_location.png'
-import tick from '../assets/icon_tick.png'
 import starIcon from '../assets/Star_icon.png'
 import time from '../assets/opportunity_time.png'
 import experience from '../assets/opportunity_bag.png'
@@ -18,71 +10,70 @@ import place from '../assets/opportunity_location.png'
 import twitter from '../assets/socials-x.png'
 import linkedin from '../assets/socials-linkedin.png'
 import facebook from '../assets/socials-facebook.png'
-import formatPostedDate from './OpportunitiesCard';
-import { Joblist } from '../JobList';
-import { AvatarMenu } from './AvatarMenu';
+import { formatPostedDate } from './OpportunitiesCard';
+import { useJobs } from './Jobcontext';
+import SearchBar from './Searchbar';
+import { Header } from '../Components-LandingPage/Header';
 
 export const OpportunityOverview = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
 
-  const { id } = useParams()
-  const job = Joblist.find(singleJob => singleJob.id === id);
+  const { jobs, appliedJobs, applyForJob, toggleSaveJob, isJobSaved } = useJobs();
 
-  const similarJobs = Joblist.filter((similarJob) => {
-    return similarJob.id !== job.id && similarJob.Department === job.Department;
+  const job = jobs.find(singleJob => singleJob.id === id) || appliedJobs.find(singleJob => singleJob.id === id);
+
+  const isSaved = job ? isJobSaved(job.id) : false;
+  const isApplied = appliedJobs.some(j => j.id === id);
+
+  if (!job) {
+      return (
+          <>
+            <Header />
+            <div style={{ padding: '100px', textAlign: 'center' }}>
+                <h2>Job not found</h2>
+                <p>This job may have been removed or you have already applied.</p>
+                <button className="back-btn" onClick={() => navigate('/Job-portal-Live/jobseeker/jobs')}>Back to Jobs</button>
+            </div>
+            <Footer />
+          </>
+      );
+  }
+
+  const similarJobs = jobs.filter((similarJob) => {
+    return similarJob.id !== job.id && similarJob.Department.some(item => job.Department.includes(item));
   });
 
   const limitedSimilarJob = similarJobs.slice(0, 9);
 
+  const [query, setQuery] = useState('');
+  const [loc, setLoc] = useState(''); 
+  const [exp, setExp] = useState('');
+
+  const handleInitialSearch = () => {
+    navigate('/Job-portal-Live/jobseeker/searchresults', {
+      state: {
+        query: query,
+        location: loc,
+        experience: exp
+      }
+    })
+  }
+
   return (
     <>
-      {/* <header className="header">
-        <div className="logo">job portal</div>
-        <nav className="nav-links">
-          <Link to="/Job-portal-Live/jobseeker/" className="nav-item" >Home</Link>
-          <Link to="/Job-portal-Live/jobseeker/jobs" className="nav-item" >Jobs</Link>
-          <Link to="/Job-portal-Live/jobseeker/companies" className="nav-item" >Companies</Link>
-        </nav>
-
-        <div className="auth-links">
-          <Link to="/Job-portal/jobseeker/myjobs"><img className='header-icons' src={breifcase} alt='My Jobs' /></Link>
-          <div><img className='header-icons' src={chat} alt='Messages' /></div>
-          <div><img className='header-icons' src={bell} alt='Notifications' /></div>
-          <AvatarMenu />
-        </div>
-      </header> */}
-      <JHeader/>
+      <Header />
 
       <div className='opp-overview-content'>
         <div className='search-backbtn-container'>
           <button className="back-btn" onClick={() => navigate(-1)}>Back</button>
 
-          <div className="search-bar">
-            <div className="search-field">
-              <span><img src={search} className="icon-size" alt="search_icon" /></span>
-              <input type="text" placeholder="Search by Skills, company or job title" />
-            </div>
-            <div className="separator"></div>
-
-            <div className="search-field">
-              <span><img src={location} className="icon-size" alt="location_icon" /></span>
-              <input type="text" placeholder="Enter Location" />
-            </div>
-            <div className="separator"></div>
-
-            <div className="search-field">
-              <span><img src={tick} className="icon-size" alt="search_tick" /></span>
-              <select defaultValue="" required>
-                <option value="" disabled hidden>Enter Experience</option>
-                <option value="fresher">Fresher</option>
-                <option value="1-3">1-3 Years</option>
-                <option value="3-5">3-5 Years</option>
-                <option value="5+">5+ Years</option>
-              </select>
-            </div>
-
-            <button className="search-button">Search</button>
-          </div>
+          <SearchBar 
+            searchQuery={query} setSearchQuery={setQuery} 
+            searchLocation={loc} setSearchLocation={setLoc} 
+            searchExp={exp} setSearchExp={setExp} 
+            onSearch={handleInitialSearch} 
+           />
         </div>
 
         <div className='opp-overview-main'>
@@ -92,15 +83,20 @@ export const OpportunityOverview = () => {
               <div className="Opportunities-job-header">
                 <div>
                   <h2 className="opp-topcard-job-title">{job.title}</h2>
-                  <h5 className="Opportunities-job-company">{job.company} <span className="Opportunities-divider">|</span><span className="star"><img src={starIcon} /></span> {job.ratings} <span className="Opportunities-divider">|</span><span className="opp-reviews"> {job.reviewNo} Reviews</span></h5>
+                  <h5 className="Opportunities-job-company">
+                    {job.company} <span className="Opportunities-divider">|</span>
+                    <span className="star"><img src={starIcon} alt="star" /></span> {job.ratings} 
+                    <span className="Opportunities-divider">|</span>
+                    <span className="opp-reviews"> {job.reviewNo} Reviews</span>
+                  </h5>
                 </div>
                 {job.logo ? (<img src={job.logo} alt={job.company} className="Opportunities-job-logo" />) : (<div className="Opportunities-job-logo-placeholder">{job.company.charAt(0).toUpperCase()}</div>)}
               </div>
 
               <div className="Opportunities-job-details">
-                <p className='Opportunities-detail-line'><img src={time} className='card-icons' />{job.duration}<span className="Opportunities-divider">|</span>₹ {job.salary} Lpa</p>
-                <p className='Opportunities-detail-line'><img src={experience} className='card-icons' />{job.experience} years of experience</p>
-                <p className='Opportunities-detail-line'><img src={place} className='card-icons' />{job.location}</p>
+                <p className='Opportunities-detail-line'><img src={time} className='card-icons' alt="time" />{job.duration}<span className="Opportunities-divider">|</span>₹ {job.salary} Lpa</p>
+                <p className='Opportunities-detail-line'><img src={experience} className='card-icons' alt="exp" />{job.experience} years of experience</p>
+                <p className='Opportunities-detail-line'><img src={place} className='card-icons' alt="loc" />{job.location}</p>
               </div>
 
               <div className='Opportunities-details-bottom'>
@@ -124,15 +120,30 @@ export const OpportunityOverview = () => {
                 </div>
 
                 <div className="Opportunities-job-actions">
-                  <button className="Opportunities-save-btn">Save</button>
-                  <button className="Opportunities-apply-btn">Apply</button>
+                  <button 
+                    className={isSaved ? "Opportunities-apply-btn" : "Opportunities-save-btn"}
+                    onClick={() => toggleSaveJob(job)}
+                  >
+                    {isSaved ? "Saved" : "Save"}
+                  </button>
+      
+                  <button 
+                    className="Opportunities-apply-btn"
+                    onClick={() => applyForJob(job)}
+                    disabled={isApplied}
+                    style={{ 
+                        opacity: isApplied ? 0.6 : 1, 
+                        cursor: isApplied ? 'not-allowed' : 'pointer',
+                        backgroundColor: isApplied ? '#6c757d' : '' // Optional grey out
+                    }}
+                  >
+                    {isApplied ? "Applied" : "Apply"}
+                  </button>
                 </div>
               </div>
             </div>
 
-            {/* Job Description */}
             <div className="opp-job-details-card">
-              {/* Job Highlights */}
               <div className="opp-job-highlights">
                 <h3>Job Highlights</h3>
                 <ul>
@@ -157,10 +168,11 @@ export const OpportunityOverview = () => {
 
               <h3>Key Details:</h3>
               <p><strong>Role:</strong> {job.title}</p>
-              <p><strong>Industry Type:</strong> {job.IndustryType}</p>
-              <p><strong>Department:</strong> {job.Department}</p>
+              <p><strong>Industry Type:</strong> {job.IndustryType.join(", ")}</p>
+              <p><strong>Department:</strong> {job.Department.join(", ")}</p>
               <p><strong>Job Type:</strong> {job.WorkType}</p>
               <p><strong>Location:</strong> {job.location}</p>
+              <p><strong>Shift:</strong> {job.Shift}</p>
 
               <h3>Key Skills</h3>
               <div className="opp-key-skills-container">
@@ -182,21 +194,21 @@ export const OpportunityOverview = () => {
               </div>
             </div>
           </div>
-          {/* Similar Jobs */}
+          
           <div className="opp-job-sidebar">
             <h3>Similar Jobs</h3>
             {limitedSimilarJob.length > 0 ? limitedSimilarJob.map((sim) => (
-              <div key={sim.id} className="opp-similar-job">
+              <div key={sim.id} onClick={() => navigate(`/Job-portal-Live/jobseeker/OpportunityOverview/${sim.id}`)} className="opp-similar-job">
                 <div className="Opportunities-job-header">
                   <div>
                     <h2 className="similar-job-title">{sim.title}</h2>
-                    <p className="similar-job-company">{sim.company} <span className="Opportunities-divider">|</span><span className="star"><img src={starIcon} /></span> {sim.ratings} <span className="Opportunities-divider">|</span><span> {sim.reviewNo} reviews</span></p>
+                    <p className="similar-job-company">{sim.company} <span className="Opportunities-divider">|</span><span className="star"><img src={starIcon} alt="star" /></span> {sim.ratings} <span className="Opportunities-divider">|</span><span> {sim.reviewNo} reviews</span></p>
                   </div>
                   {sim.logo ? (<img src={sim.logo} alt={sim.company} className="Opportunities-job-logo" />) : (<div className="Opportunities-job-logo-placeholder">{sim.company.charAt(0).toUpperCase()}</div>)}
                 </div>
                 <div className="Opportunities-job-details">
-                  <p className='Opportunities-detail-line'>{sim.tags} - {sim.experience} years of experience</p>
-                  <p className='Opportunities-detail-line'><img src={place} className='card-icons' />{sim.location}</p>
+                  <p className='Opportunities-detail-line'>{sim.tags.join(", ")} - {sim.experience} years of experience</p>
+                  <p className='Opportunities-detail-line'><img src={place} className='card-icons' alt="loc" />{sim.location}</p>
                 </div>
                 <div className="similar-job-footer">
                   <div className="Opportunities-job-type">
@@ -209,7 +221,7 @@ export const OpportunityOverview = () => {
               </div>
             )) : (
               <div>
-                <p>Currently no similiar jobs available.</p>
+                <p>Currently no similar jobs available.</p>
               </div>
             )}
           </div>

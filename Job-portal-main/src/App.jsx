@@ -17,9 +17,13 @@ import { JobsTab } from './Components-Jobseeker/JobsTab'
 import { CompaniesTab } from './Components-Jobseeker/CompaniesTab'
 import { MyProfile } from './Components-Jobseeker/MyProfile'
 import { JobsThroughCompany } from './Components-Jobseeker/JobsThroughCompany'
-import SearchResultsPage from './Components-Jobseeker/SearchResultsPage'
-
-
+import { SearchResultsPage } from './Components-Jobseeker/SearchResultsPage'
+import Aboutus from './Components-LandingPage/Aboutus'
+import { JobProvider } from './Components-Jobseeker/Jobcontext'
+import {AppliedJobsOverview} from './Components-Jobseeker/AppliedJobsOverview'
+import { JobApplication } from './Components-Jobseeker/JobApplication'
+import { ApplicationStatusScreen } from './Components-Jobseeker/ApplicationStatusScreen'
+import { Revoked } from './Components-Jobseeker/Revoked'
 
 
 
@@ -92,17 +96,37 @@ const router = createBrowserRouter([
   path: '/Job-portal-Live/jobseeker/searchresults',
   element: <SearchResultsPage/>
 },
-// {
-//   path: '/Job-portal-Live/jobseeker/searchresults1',
-//   element: <Res/>
-// }
+{
+  path: '/Job-portal-Live/jobseeker/about_us',
+  element: <Aboutus/>
+},
+{
+  path: '/Job-portal-Live/jobseeker/ApplicationReview/:id',
+  element: <JobApplication/>
+},
+{
+  path: '/Job-portal-Live/jobseeker/AppliedJobsOverview/:id',
+  element: <AppliedJobsOverview/>
+},
+{
+  path: '/Job-portal-Live/jobseeker/AppliedJobsOverview/:id',
+  element: <AppliedJobsOverview/>
+},
+{
+  path: '/Job-portal-Live/jobseeker/Submitted',
+  element: <ApplicationStatusScreen/>
+},
+{
+  path: '/Job-portal-Live/jobseeker/Withdrawn',
+  element: <Revoked/>
+},
 ])
 
 function App() {
   return (
-    <>
+    <JobProvider>
       <RouterProvider router={router} />
-    </>
+    </JobProvider>
   )
 }
 

@@ -212,3 +212,60 @@ ul {
 .similar-job-footer-posted {
   margin-top: 2px;
 }
+
+/* Base container layout */
+.Opportunities-details-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+.Opportunities-footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.Opportunities-meta-info {
+  display: flex;
+  align-items: center;
+  font-size: 0.85rem;
+  color: #757575;
+}
+
+.applicants-column {
+  display: flex;
+  align-items: center;
+}
+
+.divider {
+  margin: 0 10px;
+  color: #ddd;
+}
+
+/* --- RESPONSIVE LOGIC --- */
+
+/* Desktop & Tablets (Big Screens) */
+@media (min-width: 769px) {
+  .applicants-column {
+    display: flex; /* Show on big screens */
+  }
+}
+
+/* Mobile Screens (Small Screens) */
+@media (max-width: 768px) {
+  .applicants-text {
+    display: none; /* Hide column on mobile */
+  }
+
+  .Opportunities-details-bottom {
+    flex-direction: row; /* Keeps 'On-site' to the right */
+    align-items: center;
+  }
+  
+  .Opportunities-meta-info {
+    font-size: 0.75rem; /* Slightly smaller text for mobile */
+  }
+}
