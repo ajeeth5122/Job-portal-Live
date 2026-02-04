@@ -24,9 +24,9 @@ export const Footer = () => {
           <h3>Quick Links</h3>
           <ul>
             <li onClick={()=>{navigate ('/Job-portal-Live/jobseeker/about_us')}} >About Us</li>
-            <li>Contact Us</li>
-            <li>FAQs</li>
-            <li>Blog</li>
+            <li onClick={()=>{navigate ('/Job-portal-Live/jobseeker/Contact_us')}}>Contact Us</li>
+            <li onClick={()=>{navigate('/Job-portal-Live/jobseeker/FAQ')}}>FAQs</li>
+            <li onClick={()=>{navigate ('/Job-portal-Live/jobseeker/Blogs')}}>Blog</li>
           </ul>
         </div>
 

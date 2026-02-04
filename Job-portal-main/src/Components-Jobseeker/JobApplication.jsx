@@ -119,29 +119,21 @@ export const JobApplication = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!validateForm()) return;
-
     if (!window.confirm("Are you sure want to apply?")) return;
 
-  const newApplication = {
-    ...job, 
-    appliedDate: new Date().toLocaleDateString('en-GB'),
-    status: {
-      type: "applied", 
-      text: "Applied"
-    },
-    applicantDetails: formData 
-  };
-  if (applyForJob) {
-    applyForJob(newApplication); 
-  }
+    const newApplication = {
+      ...job,
+      appliedDate: new Date().toLocaleDateString('en-GB'),
+      status: { type: "applied", text: "Applied" },
+      applicantDetails: formData 
+    };
+
+    if (applyForJob) {
+      applyForJob(newApplication); 
+    }
     
-    navigate('/Job-portal-Live/jobseeker/Submitted',
-        
- {
-      state: { jobId: jobId || id, companyId, jobData },
-    });
+    navigate(`/Job-portal-Live/jobseeker/Submitted/${id}`); 
   };
- 
 
   return (
     <>

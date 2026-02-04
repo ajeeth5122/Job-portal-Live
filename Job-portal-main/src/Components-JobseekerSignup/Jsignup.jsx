@@ -57,8 +57,6 @@ export const Jsignup = () => {
       newErrors.password = "Password is required"} 
     else if (formValues.password.length < 8) {
       newErrors.password = "Password must be at least 8 characters"}
-    else if (!formValues.password.trim()) {
-      newErrors.password = "Password is required"}
     else if (!oneUpperCase.test(formValues.password)) {
       newErrors.password = "Password must include at least one uppercase letter"} 
     else if (!oneNumber.test(formValues.password)) {

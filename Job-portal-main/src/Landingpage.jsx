@@ -10,7 +10,7 @@ import { Footer } from './Components-LandingPage/Footer'
 import './Landingpage.css'
 
 const fetchData = async () => {
-  await new Promise(resolve => setTimeout(resolve, 5000)); 
+  await new Promise(resolve => setTimeout(resolve, 1000)); 
   return { success: true }; 
 };
 
@@ -22,7 +22,7 @@ export const Landingpage = () => {
     setIsLoading(true); // Ensure loading starts
     fetchData().then(fetchedData => {setData(fetchedData);})
     .catch(error => {console.error("Failed to fetch data:", error);})
-      .finally(() => {setIsLoading(false);});
+    .finally(() => {setIsLoading(false);});
   }, []); 
 
   if (isLoading) {

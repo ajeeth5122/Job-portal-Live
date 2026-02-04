@@ -1,12 +1,12 @@
-import React, { useState, useRef } from 'react'
+import { useState } from 'react'
 import './MyProfile.css'
 import profile from '../assets/header_profile.png'
 import addPhoto from '../assets/AddPhoto.png'
 import editIcon from '../assets/EditIcon.png'
 import uploadIcon from '../assets/UploadIcon.png'
 import deleteIcon from '../assets/DeleteIcon.png'
-import { JHeader } from './JHeader';
-
+import { JHeader } from './JHeader';    
+import { Header } from '../Components-LandingPage/Header'
 // --- REUSABLE COMPONENTS ---
 
 const EditableListItem = ({ title, onEdit }) => (
@@ -371,11 +371,9 @@ const ResumeSection = ({ data, onChange, onReset, onNext }) => {
                     value: null
                 }
             });
-           
-            document.getElementById('resumeInput').value = "";
+           document.getElementById('resumeInput').value = "";
         }
-    };
-    
+    };    
     const handleViewResume = (e) => {
         e.stopPropagation(); 
         if (data.resumeFile) {
@@ -975,7 +973,7 @@ export const MyProfile = () => {
     const [openDropdown, setOpenDropdown] = useState('Basic Details');
     const [activeItem, setActiveItem] = useState('Profile');
 
-    // ORDER of Steps for Navigation
+    
     const steps = [
         'Profile', 
         'Current Details', 
@@ -1226,7 +1224,7 @@ export const MyProfile = () => {
 
     return (
         <div>
-            <JHeader/>
+            <Header/>
             <main>
                 <div className='profile-main-desc'>
                     <h1>My Profile</h1>

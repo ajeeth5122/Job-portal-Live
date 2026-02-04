@@ -1,31 +1,146 @@
-import React from 'react'
-import './Header.css'
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import './Header.css'; 
+import { Link, NavLink, useLocation } from 'react-router-dom';
+
+// JHeader assets
+import breifcase from '../assets/header_case.png';
+import chat from '../assets/header_message.png';
+import bell from '../assets/header_bell.png';
+import home_icon from '../assets/header_bell.png';
+import bell_dot from '../assets/header_bell_dot.png';
+import { AvatarMenu } from '../Components-Jobseeker/AvatarMenu';
+import { JNotification } from '../Components-Jobseeker/JNotification';
+import { notificationsData } from '../Components-Jobseeker/Afterloginlanding';
 
 export const Header = () => {
-  const [activeItem, setActiveItem] = React.useState("Home");
-
-  const handleNavClick = (itemName) => {
-    setActiveItem(itemName);
+  const location = useLocation();
+  const [showNotification, setShowNotification] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+ 
+  const isLoggedIn =
+    location.pathname.includes('/jobseeker') &&
+    !location.pathname.includes('/login') &&
+    !location.pathname.includes('/signup');
+ 
+  const navLinks = [
+    { name: 'Home', path: '/Job-portal-Live/jobseeker' },
+    { name: 'Jobs', path: '/Job-portal-Live/jobseeker/jobs' },
+    { name: 'Companies', path: '/Job-portal-Live/jobseeker/companies' },
+  ];
+ 
+  const navIcons = [
+    { image: breifcase, path: '/Job-portal-Live/jobseeker/myjobs' },
+    { image: chat, path: '' },
+  ];
+ 
+  const newNotificationsCount = notificationsData
+    ? notificationsData.filter(n => n.isNew).length
+    : 0;
+ 
+  const preventNav = (e) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
   };
-
+ 
   return (
-    <>
     <header className="header">
-    <div className="logo">job portal</div>
-    <nav className="nav-links">
-      <a href="#" className={activeItem === "Home" ? "nav-item nav-active" : "nav-item"} onClick={()=>handleNavClick("Home")}>Home</a>
-      <a href="#" className={activeItem === "Jobs" ? "nav-item nav-active" : "nav-item"} onClick={()=>handleNavClick("Jobs")}>Jobs</a>
-      <a href="#" className={activeItem === "Companies" ? "nav-item nav-active" : "nav-item"} onClick={()=>handleNavClick("Companies")}>Companies</a>
-    </nav>
+      <div className="logo-container">
+        <div className="logo">job portal</div>
+        {!isLoggedIn && (
+          <div
+            className="hamburger"
+            onClick={() => setMobileMenuOpen(prev => !prev)}
+          >
+            {mobileMenuOpen ? '✕' : '☰'}
+          </div>
+        )}
+      </div>
+      <nav className="nav-links">
+        {navLinks.map(n => {
+          let isActive = location.pathname === n.path;
+          if (n.name === 'Home' && !isActive) {
+            isActive = location.pathname === n.path + '/';
+          }
+ 
+          return (
+            <NavLink
+              key={n.name}
+              to={isLoggedIn ? n.path : '#'}
+              onClick={!isLoggedIn ? preventNav : undefined}
+              className={isActive ? 'nav-item nav-active' : 'nav-item'}
+            >
+              {n.name}
+            </NavLink>
+          );
+        })}
+      </nav>
+      <div className="auth-links">
+        {isLoggedIn ? (
+          <>
+            <Link to="/Job-portal-Live/jobseeker" className="mobile-home-icon">
+              <img
+                src={home_icon}
+                alt="Home"
+                className={
+                  location.pathname === '/Job-portal-Live/jobseeker'
+                    ? 'jheader-icons-active'
+                    : 'jheader-icons'
+                }
+              />
+            </Link>
+ 
+            {navIcons.map((IC, index) => {
+              const isActive = location.pathname === IC.path;
+              return (
+                <Link key={index} to={IC.path}>
+                  <img
+                    src={IC.image}
+                    alt="icon"
+                    className={isActive ? 'jheader-icons-active' : 'jheader-icons'}
+                  />
+                </Link>
+              );
+            })}
+ 
+            <div onClick={() => setShowNotification(!showNotification)}>
+              <img
+                src={newNotificationsCount > 0 ? bell_dot : bell}
+                alt="Notifications"
+                className="jheader-icons"
+              />
+            </div>
+ 
+            <AvatarMenu />
+ 
+            <JNotification
+              notificationsData={notificationsData || []}
+              showNotification={showNotification}
+              setShowNotification={setShowNotification}
+            />
+          </>
+        ) : (
+          <>
+            <Link to="/Job-portal-Live/jobseeker/login" className="login-btn">Login</Link>
+            <Link to="/Job-portal-Live/jobseeker/signup" className="signup-btn">Sign up</Link>
+            <div className="separator"></div>
+            <Link to="/Job-portal-Live/employer/login" className="emp-log-link">For Employers</Link>
+          </>
+        )}
+      </div>
+      {!isLoggedIn && mobileMenuOpen && (
+        <div className="mobile-menu">
+          <div className="mobile-menu-links">
+            <a href="#" onClick={preventNav} className="active">Home</a>
+            <a href="#" onClick={preventNav}>Jobs</a>
+            <a href="#" onClick={preventNav}>Companies</a>
+ 
+            <Link to="/Job-portal-Live/jobseeker/login" onClick={() => setMobileMenuOpen(false)}>Login</Link>
+            <Link to="/Job-portal-Live/jobseeker/signup" onClick={() => setMobileMenuOpen(false)}>Sign up</Link>
+            <Link to="/Job-portal-Live/employer/login" onClick={() => setMobileMenuOpen(false)}>For Employers</Link>
+          </div>
+        </div>
+      )}
 
-    <div className="auth-links">
-      <Link to="/Job-portal-Live/jobseeker/login" className="login-btn">Login</Link>
-      <Link to="/Job-portal-Live/jobseeker/signup" className="signup-btn">Sign up</Link>
-      <div className="separator"></div>
-      <Link to="/Job-portal-Live/employer/login" className="emp-log-link">For Employers</Link>
-    </div>
     </header>
-    </>
-  )
-}
+  );
+};

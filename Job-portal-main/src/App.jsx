@@ -24,6 +24,12 @@ import {AppliedJobsOverview} from './Components-Jobseeker/AppliedJobsOverview'
 import { JobApplication } from './Components-Jobseeker/JobApplication'
 import { ApplicationStatusScreen } from './Components-Jobseeker/ApplicationStatusScreen'
 import { Revoked } from './Components-Jobseeker/Revoked'
+import SettingsPage from './Components-Jobseeker/Settings'
+import { ContactUs } from './Components-Jobseeker/ContactUs'
+import { FAQ } from './Components-Jobseeker/FAQ'
+import Blogpage from './Components-Jobseeker/BlogPage'
+import BlogCategory from './Components-Jobseeker/BlogCategory'
+import { TechnologyBlog } from './Components-Jobseeker/TechnologyBlog'
 
 
 
@@ -113,12 +119,36 @@ const router = createBrowserRouter([
   element: <AppliedJobsOverview/>
 },
 {
-  path: '/Job-portal-Live/jobseeker/Submitted',
+  path: '/Job-portal-Live/jobseeker/Submitted/:id',
   element: <ApplicationStatusScreen/>
 },
 {
   path: '/Job-portal-Live/jobseeker/Withdrawn',
   element: <Revoked/>
+},
+{
+  path: '/Job-portal-Live/jobseeker/Settings',
+  element: <SettingsPage/>
+},
+{
+  path: '/Job-portal-Live/jobseeker/Contact_us',
+  element: <ContactUs/>
+},
+{
+  path: '/Job-portal-Live/jobseeker/FAQ',
+  element: <FAQ/>
+},
+{
+  path: '/Job-portal-Live/jobseeker/Blogs',
+  element: <Blogpage/>
+},
+{
+  path: '/Job-portal-Live/jobseeker/Blogs/Category',
+  element: <BlogCategory/>
+},
+{
+  path: '/Job-portal-Live/jobseeker/Blogs/Technology',
+  element: <TechnologyBlog/>
 },
 ])
 

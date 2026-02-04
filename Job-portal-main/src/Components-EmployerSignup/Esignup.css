@@ -2,3 +2,11 @@
     color: #032240;
     font-size: 14px;
 }
+ 
+@media screen and (max-width: 768px) {
+    .subtext{
+        color: #032240;
+        font-size: 8px;
+    }
+}
+ 

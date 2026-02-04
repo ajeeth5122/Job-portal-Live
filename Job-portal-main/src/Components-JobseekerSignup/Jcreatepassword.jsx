@@ -7,6 +7,9 @@ import eyeHide from '../assets/eye-hide.png'
 
 export const Jcreatepassword = () => {
   const [passwordShow, setPasswordShow] = useState(true)
+  const oneUpperCase = /^(?=.*[A-Z]).{8,}$/;
+    const oneNumber = /^(?=.*[0-9]).{8,}$/;
+    const oneSpecChar = /^(?=.*[!@#$%^&*]).{8,}$/;
     
   const togglePasswordView = () => {
     setPasswordShow((prev) => !prev)
@@ -30,6 +33,12 @@ export const Jcreatepassword = () => {
       newErrors.newPassword = "Password is required"
     } else if (formValues.newPassword.length < 8) {
       newErrors.newPassword = "Password must be at least 8 characters"
+    }else if (!oneUpperCase.test(formValues.newPassword)) {
+      newErrors.newPassword = "Password must include at least one uppercase letter"} 
+    else if (!oneNumber.test(formValues.newPassword)) {
+      newErrors.newPassword = "Password must include at least one number"}
+    else if (!oneSpecChar.test(formValues.newPassword)) {
+      newErrors.newPassword = "Password must include at least one special Charectors"
     }
 
     if (!formValues.confirmPassword.trim()) {

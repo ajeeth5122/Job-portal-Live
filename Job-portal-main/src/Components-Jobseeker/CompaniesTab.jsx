@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import './CompaniesTab.css'
-import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { Footer } from '../Components-LandingPage/Footer';
 import breifcase from '../assets/header_case.png'
@@ -25,6 +24,7 @@ import { JNotification } from './JNotification';
 import { CompaniesList } from '../CompaniesList';
 import { AvatarMenu } from './AvatarMenu';
 import { JHeader } from './JHeader';
+import { Header } from '../Components-LandingPage/Header';
 
 /* Below Code is removed after backend integration*/
 const companiesList = CompaniesList.slice(0,8)
@@ -52,7 +52,7 @@ export const CompaniesTab = () => {
         </div>
         <JNotification notificationsData={notificationsData} showNotification={showNotification} setShowNotification={setShowNotification} />
       </header> */}
-      <JHeader/>
+      <Header/>
       <div className='jobs-tab-search-bar'>
         <div className="search-bar">
           <div className="search-field">

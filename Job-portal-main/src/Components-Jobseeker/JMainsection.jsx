@@ -30,32 +30,6 @@ export const JMainsection = () => {
             <p className="subheading">Your next big opportunity is waiting — explore jobs tailored just for you.</p>
             <SearchBar  searchQuery={query} setSearchQuery={setQuery} searchLocation={location} setSearchLocation={setLocation} searchExp={experience} 
             setSearchExp={setExperience} onSearch={handleInitialSearch}/>
-            {/* <div className="search-bar">
-                <div className="search-field">
-                    <span><img src={search} className="icon-size" alt="search_icon" /></span>
-                    <input type="text" placeholder="Search by Skills, company or job title" />
-                </div>
-                <div className="separator"></div>
-
-                <div className="search-field">
-                    <span><img src={location} className="icon-size" alt="location_icon" /></span>
-                    <input type="text" placeholder="Enter Location" />
-                </div>
-                <div className="separator"></div>
-
-                <div className="search-field">
-                    <span><img src={tick} className="icon-size" alt="search_tick" /></span>
-                    <select defaultValue="" required>
-                        <option value="" disabled hidden>Enter Experience</option>
-                        <option value="fresher">Fresher</option>
-                        <option value="1-3">1-3 Years</option>
-                        <option value="3-5">3-5 Years</option>
-                        <option value="5+">5+ Years</option>
-                    </select>
-                </div>
-
-                <button onClick={()=>{navigate('/Job-portal-Live/jobseeker/searchresults')}}className="search-button">Search</button>
-            </div> */}
             
         </main>
     )

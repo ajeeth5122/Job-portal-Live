@@ -15,7 +15,7 @@ export const Joblist = [
     company: "Apple IN",
     companyId: "AIN001",
     logo: AppleLogo,
-    posted: "2025/12/18",
+    posted: "2025/11/01",
     PostedBy: "Company Jobs",
 
     IndustryType: ["IT Services"],
@@ -28,7 +28,7 @@ export const Joblist = [
     reviewNo: 533,
     salary: "12.0",
     experience: "3",
-    location: "Bangalore",
+    location: "Bengaluru",
     openings: 8,
     applicants: 65,
     tags: ["Full-time"],
@@ -42,7 +42,7 @@ export const Joblist = [
       "Strong knowledge of data structures and algorithms",
       "Experience with high-traffic, distributed systems"
     ],
-    companyOverview: "Apple is a global technology leader dedicated to bringing the best user experience to customers through innovative **hardware, software, and services** (iPhone, Mac, Watch, App Store, iCloud). Apple India (**Apple IN**) is a rapidly expanding strategic pillar, focusing on **local manufacturing** (aligning with 'Make in India'), **R&D and engineering support** from its centers in Bangalore and Hyderabad, and expanding **direct retail presence** to serve the fast-growing Indian consumer market.",
+    companyOverview: "Apple is a global technology leader dedicated to bringing the best user experience to customers through innovative **hardware, software, and services** (iPhone, Mac, Watch, App Store, iCloud). Apple India (**Apple IN**) is a rapidly expanding strategic pillar, focusing on **local manufacturing** (aligning with 'Make in India'), **R&D and engineering support** from its centers in Bengaluru and Hyderabad, and expanding **direct retail presence** to serve the fast-growing Indian consumer market.",
     jobDescription: "We are seeking a skilled Software Engineer to join our core services team. You will be responsible for designing and implementing high-performance, scalable, and secure backend services. This includes API development, database optimization, and ensuring the reliability of our critical systems. If you thrive in a fast-paced environment and have a passion for building robust infrastructure, we encourage you to apply.",
     Responsibilities: [
       "Design, develop, and deploy scalable backend services and APIs using relevant programming languages (e.g., Python, Go, Java).",
@@ -60,7 +60,7 @@ export const Joblist = [
     company: "Cognizant Technologies",
     companyId: "CTS001",
     logo: Cts,
-    posted: "2025/12/17",
+    posted: "2025/11/01",
     PostedBy: "Company Jobs",
 
     IndustryType: ["IT Services"],
@@ -245,7 +245,7 @@ export const Joblist = [
     reviewNo: 869,
     salary: "22.0",
     experience: "1",
-    location: "Bangalore",
+    location: "Bengaluru",
     openings: 20,
     applicants: 300,
     tags: ["Full-time"],
@@ -2065,7 +2065,7 @@ export const Joblist = [
 
     IndustryType: ["IT Services", "Regional Sales"],
     Department: ["Field Marketing"],
-    WorkType: "On-site",
+    WorkType: "Onsite",
     Shift: "Rotational",
     duration: "Permanent",
 
@@ -2197,7 +2197,7 @@ export const Joblist = [
 
     IndustryType: ["Data Infrastructure", "Big Data"],
     Department: ["Data Engineering", "Infrastructure"],
-    WorkType: "Hybrid",
+    WorkType: "Hybrid/Remote Flex",
     Shift: "General",
     duration: "Permanent",
 
@@ -2241,7 +2241,7 @@ export const Joblist = [
 
     IndustryType: ["Mobile App Development", "Consumer Tech"],
     Department: ["Engineering", "Mobile"],
-    WorkType: "On-site",
+    WorkType: "Onsite/Flexible",
     Shift: "General",
     duration: "Permanent",
 
@@ -2285,7 +2285,7 @@ export const Joblist = [
 
     IndustryType: ["Cloud Services", "Site Reliability Engineering"],
     Department: ["DevOps", "SRE", "Infrastructure"],
-    WorkType: "On-site",
+    WorkType: "Onsite",
     Shift: "Rotational",
     duration: "Permanent",
 
@@ -3010,7 +3010,7 @@ export const Joblist = [
       "Proven work experience as a Data Analyst",
       "Good time-management skills"
     ],
-    companyOverview: "Apple is a global technology leader dedicated to bringing the best user experience to customers through innovative **hardware, software, and services** (iPhone, Mac, Watch, App Store, iCloud). Apple India (**Apple IN**) is a rapidly expanding strategic pillar, focusing on **local manufacturing** (aligning with 'Make in India'), **R&D and engineering support** from its centers in Bangalore and Hyderabad, and expanding **direct retail presence** to serve the fast-growing Indian consumer market.",
+    companyOverview: "Apple is a global technology leader dedicated to bringing the best user experience to customers through innovative **hardware, software, and services** (iPhone, Mac, Watch, App Store, iCloud). Apple India (**Apple IN**) is a rapidly expanding strategic pillar, focusing on **local manufacturing** (aligning with 'Make in India'), **R&D and engineering support** from its centers in Bengaluru and Hyderabad, and expanding **direct retail presence** to serve the fast-growing Indian consumer market.",
     jobDescription: "We are looking for a Data Analyst to collect, process, and analyze large datasets to provide actionable insights. You will be responsible for interpreting data, developing custom reports and dashboards, and working with cross-functional teams to identify trends and improve business performance. Proficiency in SQL and data visualization tools is a must.",
     Responsibilities: [
       "Gather and evaluate user requirements in collaboration with product managers and engineers.",
@@ -3057,7 +3057,7 @@ export const Joblist = [
       "Experience with prototyping and motion design",
       "Proven ability to conduct and synthesize user research"
     ],
-    companyOverview: "Apple is a global technology leader dedicated to bringing the best user experience to customers through innovative **hardware, software, and services** (iPhone, Mac, Watch, App Store, iCloud). Apple India (**Apple IN**) is a rapidly expanding strategic pillar, focusing on **local manufacturing** (aligning with 'Make in India'), **R&D and engineering support** from its centers in Bangalore and Hyderabad, and expanding **direct retail presence** to serve the fast-growing Indian consumer market.",
+    companyOverview: "Apple is a global technology leader dedicated to bringing the best user experience to customers through innovative **hardware, software, and services** (iPhone, Mac, Watch, App Store, iCloud). Apple India (**Apple IN**) is a rapidly expanding strategic pillar, focusing on **local manufacturing** (aligning with 'Make in India'), **R&D and engineering support** from its centers in Bengaluru and Hyderabad, and expanding **direct retail presence** to serve the fast-growing Indian consumer market.",
     jobDescription: "We are looking for a creative and empathetic Product Designer to shape the future of our digital products. You will own the design process from initial concept to final execution, creating intuitive, accessible, and beautiful experiences. You will collaborate closely with engineering, product management, and research teams to deliver user-centered solutions that align with business goals and Apple's high design standards.",
     Responsibilities: [
       "Plan and conduct user research (interviews, usability testing, surveys) to understand user needs and pain points.",
@@ -3088,7 +3088,7 @@ export const Joblist = [
     reviewNo: 533,
     salary: "10",
     experience: "7",
-    location: "Bangalore",
+    location: "Bengaluru",
     openings: 4,
     applicants: 50,
     tags: ["Full-time"],
@@ -3101,7 +3101,7 @@ export const Joblist = [
       "Experience managing large, cross-functional technical programs",
       "Expertise in Agile methodologies and process optimization"
     ],
-    companyOverview: "Apple is a global technology leader dedicated to bringing the best user experience to customers through innovative **hardware, software, and services** (iPhone, Mac, Watch, App Store, iCloud). Apple India (**Apple IN**) is a rapidly expanding strategic pillar, focusing on **local manufacturing** (aligning with 'Make in India'), **R&D and engineering support** from its centers in Bangalore and Hyderabad, and expanding **direct retail presence** to serve the fast-growing Indian consumer market.",
+    companyOverview: "Apple is a global technology leader dedicated to bringing the best user experience to customers through innovative **hardware, software, and services** (iPhone, Mac, Watch, App Store, iCloud). Apple India (**Apple IN**) is a rapidly expanding strategic pillar, focusing on **local manufacturing** (aligning with 'Make in India'), **R&D and engineering support** from its centers in Bengaluru and Hyderabad, and expanding **direct retail presence** to serve the fast-growing Indian consumer market.",
     jobDescription: "We are looking for a highly skilled Technical Program Manager (TPM) to drive complex, cross-functional engineering programs from inception to launch. You will define the technical strategy, coordinate resources across multiple teams (Engineering, Product, Operations), manage dependencies, and communicate program status to senior leadership. Success requires deep technical understanding and exceptional leadership.",
     Responsibilities: [
       "Define and manage the end-to-end technical roadmap for complex product features or infrastructure initiatives.",
@@ -3145,7 +3145,7 @@ export const Joblist = [
       "Proven experience in financial modeling and forecasting",
       "Strong proficiency in SAP/Oracle and advanced Excel"
     ],
-    companyOverview: "Apple is a global technology leader dedicated to bringing the best user experience to customers through innovative **hardware, software, and services** (iPhone, Mac, Watch, App Store, iCloud). Apple India (**Apple IN**) is a rapidly expanding strategic pillar, focusing on **local manufacturing** (aligning with 'Make in India'), **R&D and engineering support** from its centers in Bangalore and Hyderabad, and expanding **direct retail presence** to serve the fast-growing Indian consumer market.",
+    companyOverview: "Apple is a global technology leader dedicated to bringing the best user experience to customers through innovative **hardware, software, and services** (iPhone, Mac, Watch, App Store, iCloud). Apple India (**Apple IN**) is a rapidly expanding strategic pillar, focusing on **local manufacturing** (aligning with 'Make in India'), **R&D and engineering support** from its centers in Bengaluru and Hyderabad, and expanding **direct retail presence** to serve the fast-growing Indian consumer market.",
     jobDescription: "We are seeking a detail-oriented Financial Analyst to provide critical financial planning and analysis (FP&A) support. You will be responsible for budgeting, forecasting, variance analysis, and preparing executive-level financial reports to guide strategic business decisions and ensure optimal resource allocation within our technology projects and corporate functions.",
     Responsibilities: [
       "Develop and maintain complex financial models to support long-range planning and investment decisions (CapEx/OpEx).",
@@ -3262,7 +3262,7 @@ export const Joblist = [
     reviewNo: 854,
     salary: "9.0",
     experience: "5",
-    location: "Bangalore",
+    location: "Bengaluru",
     openings: 4,
     applicants: 50,
     tags: ["Full-time"],
@@ -3391,7 +3391,7 @@ export const Joblist = [
     reviewNo: 759,
     salary: 25.0,
     experience: "4",
-    location: "Bangalore",
+    location: "Bengaluru",
     openings: 12,
     applicants: 150,
     tags: ["Full-time"],
@@ -3606,7 +3606,7 @@ export const Joblist = [
     reviewNo: 1854,
     salary: "10.0 - 18.0",
     experience: "7",
-    location: "Bangalore",
+    location: "Bengaluru",
     openings: 6,
     applicants: 70,
     tags: ["Full-time"],
@@ -3778,7 +3778,7 @@ export const Joblist = [
     reviewNo: 968,
     salary: "20.0",
     experience: "10",
-    location: "Bangalore",
+    location: "Bengaluru",
     openings: 3,
     applicants: 50,
     tags: ["Full-time"],
@@ -3907,7 +3907,7 @@ export const Joblist = [
     reviewNo: 669,
     salary: "35.0",
     experience: "4",
-    location: "Bangalore",
+    location: "Bengaluru",
     openings: 15,
     applicants: 200,
     tags: ["Full-time"],
@@ -3993,7 +3993,7 @@ export const Joblist = [
     reviewNo: 669,
     salary: "32.0",
     experience: "6",
-    location: "Bangalore",
+    location: "Bengaluru",
     openings: 5,
     applicants: 75,
     tags: ["Full-time"],
@@ -4036,7 +4036,7 @@ export const Joblist = [
     reviewNo: 669,
     salary: "5.0",
     experience: "1",
-    location: "Bangalore",
+    location: "Bengaluru",
     openings: 10,
     applicants: 120,
     tags: ["Internship"],
@@ -4337,7 +4337,7 @@ export const Joblist = [
     reviewNo: 869,
     salary: "35.0",
     experience: "7",
-    location: "Bangalore",
+    location: "Bengaluru",
     openings: 5,
     applicants: 100,
     tags: ["Full-time"],

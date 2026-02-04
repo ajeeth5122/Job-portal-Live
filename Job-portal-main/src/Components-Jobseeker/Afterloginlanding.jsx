@@ -1,21 +1,12 @@
 import React, { useState } from 'react'
 import './Afterloginlanding.css'
-import { Link } from 'react-router-dom';
-import { JHeader } from './JHeader';
+import { Header } from '../Components-LandingPage/Header';
 import { JMainsection } from './JMainsection';
 import { Jobsbycompany } from './Jobsbycompany';
 import { Opportunities } from './Opportunities';
 import { Footer } from '../Components-LandingPage/Footer';
-import breifcase from '../assets/header_case.png'
-import chat from '../assets/header_message.png'
-import bell from '../assets/header_bell.png'
-import bell_dot from '../assets/header_bell_dot.png'
-import profile from '../assets/header_profile.png'
-import { JNotification } from './JNotification';
 import { useNavigate } from "react-router-dom";
-import { AvatarMenu } from './AvatarMenu';
-
-/* Below Code is removed after backend integration*/
+ 
 const notificationsData = [
     {
         id: 1,
@@ -55,37 +46,18 @@ const notificationsData = [
     },
 ];
 export { notificationsData };
-
 export const Afterloginlanding = () => {
-
-    const [showNotification, setShowNotification] = useState(false);
-    const newNotificationsCount = notificationsData.filter(n => n.isNew).length;
     const navigate = useNavigate();
-
+   
+ 
     return (
         <>
-            <JHeader/>
-            {/* <header className="header">
-                <div className="logo">job portal</div>
-                <nav className="nav-links">
-                    <a href="#" className="nav-item nav-active" >Home</a>
-                    <Link to="/Job-portal/jobseeker/jobs" className="nav-item" >Jobs</Link>
-                    <Link to="/Job-portal/jobseeker/companies" className="nav-item" >Companies</Link>
-                </nav>
-
-                <div className="auth-links">
-                    <Link to="/Job-portal/jobseeker/myjobs"><img className='header-icons' src={breifcase} alt='My Jobs' /></Link>
-                    <div><img className='header-icons' src={chat} alt='Messages' /></div>
-                    <div onClick={() => setShowNotification(!showNotification)}><img className='header-icons' src={newNotificationsCount > 0 ? bell_dot : bell} alt='Notifications' /></div>
-                    <AvatarMenu />
-                </div>
-                <JNotification notificationsData={notificationsData} showNotification={showNotification} setShowNotification={setShowNotification} />
-            </header> */}
+            <Header/>
             <JMainsection />
             <section className='Opportunities-section'>
                 <h2 className='Opportunities-title'>Opportunities Just For You</h2>
                 <Opportunities />
-                <button onClick={() => navigate('/Job-portal-Live/jobseeker/jobs')} className="Opportunities-view-more-btn">View More</button>
+                <button onClick={() => navigate('/Job-portal-live/jobseeker/jobs')} className="Opportunities-view-more-btn">View More</button>
             </section>
             <Jobsbycompany />
             <Footer />

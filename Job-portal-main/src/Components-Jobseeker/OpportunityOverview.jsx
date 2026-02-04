@@ -129,7 +129,7 @@ export const OpportunityOverview = () => {
       
                   <button 
                     className="Opportunities-apply-btn"
-                    onClick={() => applyForJob(job)}
+                    onClick={() => navigate (`/Job-portal-Live/jobseeker/ApplicationReview/${job.id}`)}
                     disabled={isApplied}
                     style={{ 
                         opacity: isApplied ? 0.6 : 1, 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Slider from "react-slick";
 import Wipro from '../assets/WIT.png'
 import CTS from '../assets/CTSH_BIG.png'
@@ -11,11 +11,26 @@ import left from '../assets/left_arrow.png'
 import right from '../assets/right_arrow.png'
 import { useNavigate } from "react-router-dom";
 import { CompaniesList } from "../CompaniesList";
+import axios from 'axios';
+
+
+
 
 /* Below Code is removed after backend integration*/
 const findbyCompaniesNameList = CompaniesList.slice(0,8)
 
 export const Jobsbycompany = () => {
+    const [companies, setCompanies] = useState([]);
+ 
+//     useEffect(() => {
+//         fetch('https://dummyjson.com/carts')
+//   .then(res => res.json())
+//   .then(data => {
+//     console.log(data);
+//   })
+//     }, []);
+
+    console.log(companies);
     const navigate = useNavigate();
     const CustomPrevArrow = ({ onClick }) => (
         <div className="custom-arrow prev" onClick={onClick}>

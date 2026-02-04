@@ -2,12 +2,12 @@ body {
   margin: 0;
   font-family: 'Arial', sans-serif;
 }
-
+ 
 .login-page {
   background: #ffffff;
   min-height: 100vh;
 }
-
+ 
 .login-header {
   display: flex;
   justify-content: space-between;
@@ -19,58 +19,58 @@ body {
   top: 0;
   z-index: 10;
 }
-
+ 
 .logo-text {
   color: #007bff;
   font-size: 24px;
   font-weight: 700;
 }
-
+ 
 .no-account {
   color: #777;
 }
-
+ 
 .header-links {
   display: flex;
   align-items: center;
   gap: 12px;
 }
-
+ 
 .employer-redirect-link {
   color: #032240;
   font-weight: 500;
   text-decoration: none;
   font-size: 20px;
 }
-
+ 
 .login-body {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 40px 60px;
 }
-
+ 
 .login-illustration img {
   height: 600px;
   margin-left: 20px;
 }
-
+ 
 .login-form {
   max-width: 500px;
   width: 100%;
   background: #fff;
   padding: 20px 0;
   margin-right: 70px;
-  transform: translateY(-80px); 
+  transform: translateY(-80px);
 }
-
+ 
 .login-form h2 {
   text-align: center;
   font-size: 32px;
   margin-bottom: 25px;
   color: #032240;
 }
-
+ 
 .login-form label {
   font-size: 14px;
   font-weight: 500;
@@ -78,7 +78,7 @@ body {
   display: block;
   color: #032240;
 }
-
+ 
 .login-form input[type="text"],
 .login-form input[type="password"] {
   width: 100%;
@@ -88,34 +88,34 @@ body {
   border-radius: 6px;
   font-size: 14px;
 }
-
+ 
 .password-wrapper {
   position: relative;
 }
-
+ 
 .password-wrapper .eye-icon {
   position: absolute;
   right: -15px;
   top: 15px;
   cursor: pointer;
 }
-
+ 
 .show-icon{
   height: 20px;
 }
-
+ 
 .error-msg{
   color: red;
   font-size: 0.85rem;
   margin-top: 4px;
   display: block;
 }
-
+ 
 .input-error {
   border: 1px solid red !important;
   outline: none;
 }
-
+ 
 .form-options {
   display: flex;
   justify-content: space-between;
@@ -124,7 +124,7 @@ body {
   color: #032240;
   font-weight: 400;
 }
-
+ 
 .forgot-password {
   margin-top: 16px;
   text-decoration: none;
@@ -132,7 +132,7 @@ body {
   color: #032240;
   font-weight: 400;
 }
-
+ 
 .j-login-btn {
   width: 105%;
   padding: 12px;
@@ -144,14 +144,14 @@ body {
   font-size: 16px;
   cursor: pointer;
 }
-
+ 
 .divider {
   text-align: center;
   margin: 25px 0 15px;
   font-size: 17px;
   color: #777;
 }
-
+ 
 .google-btn {
   display: flex;
   align-items: center;
@@ -167,11 +167,61 @@ body {
   font-weight: 500;
   color: #333;
 }
-
+ 
 .google-btn img {
   width: 18px;
   height: 18px;
 }
-.error-msg-Hidden{
-  display: none;
+ 
+@media (max-width: 768px) {
+  .login-header {
+    flex-direction: row;
+    align-items: center;
+    padding: 16px 20px;
+    gap: 10px;
+  }
+ 
+  .header-links {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 14px;
+  }
+ 
+  .login-body {
+    flex-direction: column;
+    padding: 30px 20px;
+  }
+ 
+  .login-illustration {
+    display: none;
+  }
+ 
+  .login-header .no-account,
+  .login-header .employer-redirect-link,
+  .login-header .separator {
+    display: none;
+  }
+  .login-header .header-links {
+    width: auto;
+    justify-content: flex-end;
+  }
+  .login-header .signup-btn {
+    display: inline-flex;
+    white-space: nowrap;
+  }
+ 
+  .login-form {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+ 
+  .login-form h2 {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 24px;
+    padding: 20px;
+  }
 }
+ 

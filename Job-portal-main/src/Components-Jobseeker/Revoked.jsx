@@ -12,7 +12,7 @@ export const Revoked = () => {
     useEffect(() => {
         const timer = setTimeout(() => {
           navigate("/Job-portal-Live/jobseeker"); 
-        }, 3000); 
+        }, 5000); 
         return () => clearTimeout(timer);
       }, [navigate]);
     

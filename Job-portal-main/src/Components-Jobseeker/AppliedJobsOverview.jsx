@@ -35,11 +35,31 @@ const AnimatedConnector = styled(StepConnector)(({ theme }) => ({
 export const AppliedJobsOverview=()=> {
   
   const { id } = useParams();
-  const { appliedJobs } = useJobs();
+  const { appliedJobs,setJobs,setAppliedJobs} = useJobs();
   const navigate=useNavigate();
   const job = appliedJobs.find(job => job.id === id)
+  console.log(job)
 
-  
+  const withdrawApplication = (jobId) => {
+    const jobToRestore = appliedJobs.find(j => j.id === jobId);
+
+    if (jobToRestore) {
+        const isConfirmed = window.confirm("Are you sure you want to withdraw this application?");
+        if (isConfirmed) {
+          navigate ('/Job-portal-Live/jobseeker/Withdrawn')
+            const { appliedDate, status, applicationStatus, ...restoredJob } = jobToRestore;
+            setAppliedJobs((prev) => prev.filter((j) => j.id !== jobId));
+            setJobs((prev) => {
+                if (prev.some(j => j.id === jobId)) return prev;
+                return [...prev, restoredJob];
+                
+            });
+
+            alert("Application withdrawn successfully.");
+            
+        }
+    }
+};
   const [activeStep, setActiveStep] = useState(-1);
   
   const applicationStatus = [
@@ -60,6 +80,14 @@ export const AppliedJobsOverview=()=> {
     }, 500);
     return () => clearTimeout(timer);
   }, []);
+
+  if(!job)
+    return(
+  <>
+
+  </>
+    )
+    else
   return (
     
     <div >
@@ -68,11 +96,11 @@ export const AppliedJobsOverview=()=> {
     <div style={{display:"grid", gridTemplateColumns:"1fr 1fr"}} className='appliedjobsO-job-card'>
       <div >
       <div  className="myjobs-card-header">
-            <div><h2 className="myjobs-job-title">{job.title}</h2></div>
+            <div><h2 className="myjobs-job-title"> {job?.title} </h2></div>
             
       </div>     
       <div style={{marginTop:"20px"}} className="myjobs-company-sub">
-            <p className="myjobs-company-name"> {job.company} <span className="Opportunities-divider">|</span><span className="star"><img src={starIcon} /></span> {job.ratings} <span className="Opportunities-divider">|</span><span>{job.reviewNo}</span></p>
+            <p className="myjobs-company-name"> {job?.company} <span className="Opportunities-divider">|</span><span className="star"><img src={starIcon} /></span> {job.ratings} <span className="Opportunities-divider">|</span><span>{job.reviewNo}</span></p>
       </div>      
       <div style={{marginTop:"20px"}} className="Opportunities-job-details">
             <p className='Opportunities-detail-line'><img src={time} className='card-icons' />{job.duration} <span className="Opportunities-divider">|</span> <span>{job.salary} LPA</span><span className="Opportunities-divider">|</span> <img src={experience} className='card-icons' />{job.experience} years of experience <span className="Opportunities-divider">|</span><img src={place} className='card-icons' /> Coimbatore </p>
@@ -182,7 +210,10 @@ export const AppliedJobsOverview=()=> {
           </Box>
           <button style={{border:"none",outline:"None",marginTop:"50px",
           padding:"10px 20px",borderRadius:"10px",background:"#1976d2",color:"snow"}}
-          onClick={()=>{navigate('/Job-portal-Live/jobseeker/Withdrawn')}}
+          onClick={
+            (e)=>{
+            withdrawApplication(job.id)
+          }}
           >Withdraw</button>
     </div>
     

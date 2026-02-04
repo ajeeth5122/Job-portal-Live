@@ -6,6 +6,7 @@ import eye from '../assets/show_password.png'
 import eyeHide from '../assets/eye-hide.png'
 import Google from '../assets/GOOG.png'
 import './Jlogin.css'
+import { Header } from '../Components-LandingPage/Header';
 
 export const Jlogin = () => {
 
@@ -58,7 +59,7 @@ export const Jlogin = () => {
 
   return (
     <div className="login-page">
-      <header className="login-header">
+      {/* <header className="login-header">
         <Link to="/Job-portal" className="logo">
           <span className="logo-text">job portal</span>
         </Link>
@@ -68,9 +69,9 @@ export const Jlogin = () => {
           <div className="separator"></div>
           <Link to='/Job-portal-live/employer/login' className="employer-redirect-link">Employers Login</Link>
         </div>
-      </header>
-
-      <div className="login-body">
+      </header> */}
+    <Header/>
+      <div style={{marginTop:'150px'}} className="login-body">
         <div className="login-illustration">
           <img src={manSitting} alt="Login Illustration" />
         </div>
