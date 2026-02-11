@@ -8,6 +8,9 @@ import './Elogin.css'
 
 export const Elogin = () => {
   const [passwordShow, setPasswordShow] = useState(true)
+  const navigate = useNavigate();
+  const userName= "Employer";
+  const pwd = "Emp@123"
 
   const togglePasswordView = () => {
     setPasswordShow((prev) => !prev)
@@ -17,47 +20,34 @@ export const Elogin = () => {
   const [formValues, setFormValues] = useState(initialValues)
 
   const [errors, setErrors] = useState({})
-  //  const oneUpperCase = /^(?=.*[A-Z]).{8,}$/;
-  //   const oneNumber = /^(?=.*[0-9]).{8,}$/;
-  //   const oneSpecChar = /^(?=.*[!@#$%^&*]).{8,}$/;
+  
 
-  const handleForm = (e) => {
+    const handleForm = (e) => {
     const { name, value } = e.target
     setFormValues({ ...formValues, [name]: value })
     setErrors({ ...errors, [name]: "" })
   }
-
-  const validateForm = () => {
-    const newErrors = {}
+  function handleSubmit(formData) {
+  const newErrors = {}
 
     if (!formValues.username.trim()) {
       newErrors.username = "Username or Company name is required"
+    }else if (formValues.username !== userName){
+      newErrors.username = "Incorrect Username"
     }
 
-    if (!formValues.password.trim()) {
-      newErrors.password = "Password is required"} 
-    // else if (formValues.password.length < 8) {
-    //   newErrors.password = "Password must be at least 8 characters"}
-    // else if (!formValues.password.trim()) {
-    //   newErrors.password = "Password is required"}
-    // else if (!oneUpperCase.test(formValues.password)) {
-    //   newErrors.password = "Password must include at least one uppercase letter"} 
-    // else if (!oneNumber.test(formValues.password)) {
-    //   newErrors.password = "Password must include at least one number"}
-    // else if (!oneSpecChar.test(formValues.password)) {
-    //   newErrors.password = "Password must include at least one special Charectors"
-    // }
+     if (!formValues.password.trim()) {
+      newErrors.password = "Password is required"
+    }else if (formValues.password !== pwd){
+      newErrors.password = "Incorrect Password"
+    }
 
-    setErrors(newErrors)
+  if(formValues.username === userName && formValues.password===pwd) {
+    navigate('/Job-portal-Live/Employer/Dashboard')
+  }
+ setErrors(newErrors)
     return Object.keys(newErrors).length === 0
-  }
-
-  function handleSubmit(formData) {
-    if (!validateForm()) {
-      return false // stops form submit if errors
-    }
-    console.log("Logged in successfully") // This Code is removed after backend integration 
-  }
+}
 
   return (
     <div className="login-page">

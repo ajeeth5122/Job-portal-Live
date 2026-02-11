@@ -30,6 +30,21 @@ import { FAQ } from './Components-Jobseeker/FAQ'
 import Blogpage from './Components-Jobseeker/BlogPage'
 import BlogCategory from './Components-Jobseeker/BlogCategory'
 import { TechnologyBlog } from './Components-Jobseeker/TechnologyBlog'
+import { EmployerDashboard } from './Components-Employer/EmployerDashboard'
+import { HelpCenter } from './Components-Jobseeker/HelpCenter'
+import { ProfileCreationHelp } from './Components-Jobseeker/ProfileCreationHelp'
+import { RaiseTicket } from './Components-Jobseeker/RaiseTicket'
+import { LiveChat } from './Components-Jobseeker/LiveChat'
+import { ResumeUploadHelp } from './Components-Jobseeker/ResumeUploadhelp'
+import { JobApplyIssuesHelp } from './Components-Jobseeker/JobApplyIssuesHelp'
+import { InterviewSchedulingHelp } from './Components-Jobseeker/InterviewSchedulingHelp'
+import { JobPostingHelp } from './Components-Jobseeker/JobPostingHelp'
+import { CandidateSearchHelp } from './Components-Jobseeker/CandidateSearchHelp'
+import { SubscriptionIssuesHelp } from './Components-Jobseeker/SubscriptionIssuesHelp'
+import { InvoicePaymentHelp } from './Components-Jobseeker/InvoicePaymentHelp'
+import { LoginIssuesHelp } from './Components-Jobseeker/LoginIssuesHelp'
+import { PageErrorsHelp } from './Components-Jobseeker/PageErrorsHelp'
+import { FileUploadHelp } from './Components-Jobseeker/FileUploadHelp'
 
 
 
@@ -103,6 +118,66 @@ const router = createBrowserRouter([
   element: <SearchResultsPage/>
 },
 {
+  path: '/Job-portal-Live/jobseeker/help-center',
+  element: <HelpCenter />,
+},
+{
+  path: '/Job-portal-Live/jobseeker/help-center/raise-a-ticket',
+  element: <RaiseTicket />,
+},
+{
+  path: '/Job-portal-Live/jobseeker/help-center/help-FAQs',
+  element: <FAQ />,
+},
+{
+  path:'/Job-portal-Live/jobseeker/help-center/live-chat',
+  element: <LiveChat />,
+},
+{
+  path:'/Job-portal-Live/jobseeker/help-center/profile-creation-help',
+  element: <ProfileCreationHelp />,
+},
+{
+  path:'/Job-portal-Live/jobseeker/help-center/resume-upload-help',
+  element: <ResumeUploadHelp />,
+},
+{
+  path:'/Job-portal-Live/jobseeker/help-center/job-apply-help',
+  element: <JobApplyIssuesHelp />,
+},
+{
+  path:'/Job-portal-Live/jobseeker/help-center/interview-scheduling-help',
+  element: <InterviewSchedulingHelp />,
+},
+{
+  path:'/Job-portal-Live/jobseeker/help-center/job-posting-help',
+  element: <JobPostingHelp />,
+},
+{
+  path:'/Job-portal-Live/jobseeker/help-center/candidate-search-help',
+  element: <CandidateSearchHelp />,
+},
+{
+  path:'/Job-portal-Live/jobseeker/help-center/subscription-issue-help',
+  element: <SubscriptionIssuesHelp />,
+},
+{
+  path:'/Job-portal-Live/jobseeker/help-center/invoice-payment-help',
+  element: <InvoicePaymentHelp />,
+},
+{
+  path:'/Job-portal-Live/jobseeker/help-center/login-issue-help',
+  element: <LoginIssuesHelp />,
+},
+{
+  path:'/Job-portal-Live/jobseeker/help-center/page-error-help',
+  element: <PageErrorsHelp />,
+},
+{
+  path:'/Job-portal-Live/jobseeker/help-center/file-upload-help',
+  element: <FileUploadHelp />,
+},
+{
   path: '/Job-portal-Live/jobseeker/about_us',
   element: <Aboutus/>
 },
@@ -149,6 +224,10 @@ const router = createBrowserRouter([
 {
   path: '/Job-portal-Live/jobseeker/Blogs/Technology',
   element: <TechnologyBlog/>
+},
+{
+  path: '/Job-portal-Live/Employer/Dashboard',
+  element: <EmployerDashboard/>
 },
 ])
 

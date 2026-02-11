@@ -18,9 +18,9 @@ export const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
  
   const isLoggedIn =
-    location.pathname.includes('/jobseeker') &&
+    location.pathname.includes('/jobseeker')&&
     !location.pathname.includes('/login') &&
-    !location.pathname.includes('/signup');
+    !location.pathname.includes('/signup')
  
   const navLinks = [
     { name: 'Home', path: '/Job-portal-Live/jobseeker' },

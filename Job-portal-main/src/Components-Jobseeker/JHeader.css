@@ -1,16 +1,31 @@
+.header-icons {
+  height: 28px;
+  margin: 15px;
+  cursor: pointer;
+}
+ 
 .jheader-icons {
   height: 28px;
-  /* margin: 15px; */
   cursor: pointer;
   padding: 15px;
   border-radius: 25px;
 }
+ 
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;  
+  padding: 12px 24px;
+}
+ 
 .jheader-nav-links {
-  margin-left: 10%;
   display: flex;
   gap: 24px;
+  justify-content: center;
+  flex: 1;                        
+  margin-left: 0;                  
 }
-
+ 
 .jheader-nav-items {
   text-decoration: none;
   color: #032240;
@@ -18,22 +33,78 @@
   padding: 8px 12px;
   border-radius: 8px;
 }
-
+ 
 .jheader-nav-active {
   background-color: #E9F3FC;
   padding: 8px 12px;
   color: #000;
   font-weight: 500;
-  text-decoration: None;
+  text-decoration: none;
   border-radius: 8px;
 }
-.jheader-icons-active{
-  background-color:#E9F3FC ;
-   height: 28px;
-  /* margin: 15px; */
+ 
+.jheader-icons-active {
+  background-color: #E9F3FC;
+  height: 28px;
   cursor: pointer;
   padding: 15px;
   border-radius: 15px;
-  
 }
-
+ 
+.auth-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+ 
+.home-icon,
+.mobile-home-icon {
+  display: none;
+}
+ 
+@media (max-width: 768px) {
+ 
+  .header {
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 16px;
+    gap: 10px;
+  }
+ 
+  .logo {
+    text-align: center;
+    width: 100%;
+  }
+ 
+  .jheader-nav-links {
+    display: none;
+  }
+ 
+  .jheader-icons,
+  .jheader-icons-active {
+    height: 22px;
+    width: 22px;
+    padding: 8px;
+  }
+ 
+  .auth-links {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 10px;
+    padding: 0 12px;
+  }
+ 
+  .mobile-home-icon {
+    display: flex;
+    cursor: pointer;
+    margin-bottom: 7px;
+  }
+ 
+  .mobile-home-menu {
+    display: none;
+  }
+}
+ 
+ 
