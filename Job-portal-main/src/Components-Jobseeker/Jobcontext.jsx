@@ -6,8 +6,53 @@ const JobContext = createContext();
 export const JobProvider = ({ children }) => {
  
     const [jobs, setJobs] = useState(Joblist);
+    const [onlineStatus, setOnlineStatus] = useState("yes");
     const [appliedJobs, setAppliedJobs] = useState([]);
     const [savedJobs, setSavedJobs] = useState([]);
+    const [chats, setChats] = useState([
+            {
+                id: 1,
+                name: "Ajeeth A",
+                status: "online",
+                messages: [{ id: 1, text: "Welcome to Job Portal Messenger!", sender: "friend", time: "10:30 AM" }],
+                pendingData: [
+                    "Hi! I came across your profile...",
+                    "We currently have an opening...",
+                    "That's great! Remote or Relocation?"
+                ]
+            },
+            {
+                id: 2,
+                name: "Harsha A",
+                status: "online",
+                messages: [{ id: 1, text: "Hey, are you free for a call?", sender: "friend", time: "11:11 AM" }],
+                pendingData: ["I saw your portfolio.", "Can we discuss the salary?"]
+            },
+            {
+                id: 3,
+                name: "SuryaKumar R",
+                status: "offline",
+                messages: [{ id: 1, text: "Referral update: Sent!", sender: "friend", time: "09:00 AM" }],
+                pendingData: ["Check your mail."]
+            },
+            {
+                id: 4,
+                name: "ThomasAntony p",
+                status: "away",
+                messages: [{ id: 1, text: "Hey There", sender: "friend", time: "08:00 AM" }],
+                pendingData: []
+            },
+            {
+                id: 5,
+                name: "Naveen",
+                status: "Online",
+                messages: [{ id: 1, text: "is any designs needed please feel free to reachout..", sender: "friend", time: "12:00 PM" }],
+                pendingData: []
+            },
+        ]);
+         const [activeChatId, setActiveChatId] = useState(1);
+
+         
  
     const getFormattedDate = () => {
         return new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
@@ -19,7 +64,12 @@ export const JobProvider = ({ children }) => {
         const newAppliedJob = {
             ...originalJob,
             appliedDate: `Applied on ${getFormattedDate()}`,
+            
             status: { text: 'Hiring in Progress', type: 'progress' },
+            // other 2 options for Status:
+            // status= {text: 'Reviewing Application', type: 'reviewing'},
+            // status= {text: 'Hiring Done', type: 'done'},
+            
             applicationStatus: [
  
                 { label: 'Application Submitted', sub: "Your profile, resume, and cover letter have successfully entered the company's database, and an acknowledgment has been sent.", status: 'completed' },
@@ -42,25 +92,7 @@ export const JobProvider = ({ children }) => {
         alert(`Successfully applied to ${originalJob.title} at ${originalJob.company}!`);
     };
  
-//     const withdrawApplication = (jobId) => {
-//     const jobToRestore = appliedJobs.find(j => j.id === jobId);
-
-//     if (jobToRestore) {
-//         const isConfirmed = window.confirm("Are you sure you want to withdraw this application?");
-//         if (isConfirmed) {
-//             const { appliedDate, status, applicationStatus, ...restoredJob } = jobToRestore;
-//             setAppliedJobs((prev) => prev.filter((j) => j.id !== jobId));
-//             setJobs((prev) => {
-//                 if (prev.some(j => j.id === jobId)) return prev;
-//                 return [...prev, restoredJob];
-                
-//             });
-
-//             alert("Application withdrawn successfully.");
-            
-//         }
-//     }
-// };
+    
  
     const toggleSaveJob = (originalJob) => {
         if (isJobSaved(originalJob.id)) {
@@ -83,7 +115,13 @@ export const JobProvider = ({ children }) => {
             toggleSaveJob,
             isJobSaved,
             setJobs,
-            setAppliedJobs
+            setAppliedJobs,
+            chats,
+            setChats,
+            onlineStatus, 
+            setOnlineStatus,
+            activeChatId,
+            setActiveChatId
         }}>
             {children}
         </JobContext.Provider>
